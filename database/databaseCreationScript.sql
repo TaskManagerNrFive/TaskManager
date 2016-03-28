@@ -8,14 +8,45 @@ USE `Java2_test` ;
 -- -----------------------------------------------------
 -- Table `Java2_test`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `java2_test`.`users` ;
+DROP TABLE IF EXISTS `Java2_test`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `java2_test`.`users` (
+CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   `UserID` INT(11) NOT NULL AUTO_INCREMENT,
   `FirstName` CHAR(32) NOT NULL,
   `LastName` CHAR(32) NOT NULL,
+  `TeamId` INT(11),
+  `Email` VARCHAR(255) NOT NULL UNIQUE,
+  `Password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`UserID`)
 )
+
+# INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password) VALUES ('UserName', 'UserLastName', '1user@email.com', '12345')
+
+DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
+
+CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
+  `TaskID` INT(11) NOT NULL AUTO_INCREMENT,
+  `DueDatetime` DATETIME NOT NULL,
+  `DoneDate` DATE,
+  `Title` VARCHAR(255),
+  `Description` TEXT NOT NULL,
+  `UserId` INT(11) NOT NULL,
+  `ResponsibleId` INT(11) NOT NULL,
+  `TaskType` CHAR(32),
+  PRIMARY KEY (`TaskID`)
+)
+
+DROP TABLE IF EXISTS `Java2_test`.`teams` ;
+
+CREATE TABLE IF NOT EXISTS `Java2_test`.`teams` (
+  `TeamID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` CHAR(32) NOT NULL,
+  `Description` TEXT,
+  PRIMARY KEY (`TeamID`)
+)
+
+# INSERT INTO teams (Name) VALUES ('Test Team')
+
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
