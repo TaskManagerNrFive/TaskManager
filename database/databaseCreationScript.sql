@@ -18,9 +18,10 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   `Email` VARCHAR(255) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`UserID`)
-)
+);
 
-# INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password) VALUES ('UserName', 'UserLastName', '1user@email.com', '12345')
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password)
+VALUES ('UserName', 'UserLastName', '1user@email.com', '12345');
 
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
@@ -34,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
   `ResponsibleId` INT(11) NOT NULL,
   `TaskType` CHAR(32),
   PRIMARY KEY (`TaskID`)
-)
+);
 
 DROP TABLE IF EXISTS `Java2_test`.`teams` ;
 
@@ -43,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`teams` (
   `Name` CHAR(32) NOT NULL,
   `Description` TEXT,
   PRIMARY KEY (`TeamID`)
-)
+);
 
-# INSERT INTO teams (Name) VALUES ('Test Team')
+INSERT INTO teams (Name) VALUES ('Test Team');
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
