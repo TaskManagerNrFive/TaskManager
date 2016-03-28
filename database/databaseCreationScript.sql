@@ -8,9 +8,9 @@ USE `Java2_test` ;
 -- -----------------------------------------------------
 -- Table `Java2_test`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `java2_test`.`users` ;
+DROP TABLE IF EXISTS `Java2_test`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `java2_test`.`users` (
+CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   `UserID` INT(11) NOT NULL AUTO_INCREMENT,
   `FirstName` CHAR(32) NOT NULL,
   `LastName` CHAR(32) NOT NULL,
