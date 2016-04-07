@@ -1,6 +1,5 @@
 package lv.javaguru.java2.servlet.mvc;
 
-<<<<<<< HEAD
 
 /**
  * Created by andrew on 3/29/16.
