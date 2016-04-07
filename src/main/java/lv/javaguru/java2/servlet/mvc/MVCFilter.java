@@ -13,12 +13,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
+/**
+ * Created by NightStranger on 3/29/2016.
+ */
 public class MVCFilter implements Filter {
 
     private Map<String, MVCController> urlToControllerMap;
+
     private ApplicationContext springContext;
 
     private static Logger logger = Logger.getLogger(MVCFilter.class.getName());
@@ -35,6 +36,10 @@ public class MVCFilter implements Filter {
         urlToControllerMap = new HashMap<>();
         urlToControllerMap.put("/hello", getBean(HelloWorldController.class));
         urlToControllerMap.put("/taskTypes", getBean(TaskTypesController.class));
+        urlToControllerMap.put("/hello", getBean(HelloWorldController.class));
+        urlToControllerMap.put("/newTeam", getBean(newTeamFormController.class));
+        urlToControllerMap.put("/newTeamRegistration",
+                                getBean(newTeamRegistrationController.class));
     }
 
     private MVCController getBean(Class clazz) {
@@ -45,16 +50,16 @@ public class MVCFilter implements Filter {
     public void doFilter(ServletRequest request,
                          ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)request;
-        HttpServletResponse resp = (HttpServletResponse)response;
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
 
         String contextURI = req.getServletPath();
         String method = req.getMethod();
 
         MVCController controller = urlToControllerMap.get(contextURI);
-//        if (method.equalsIgnoreCase("GET")) {
-//
-//        }
+        if (method.equalsIgnoreCase("GET")) {
+
+        }
 
         MVCModel model = controller.processRequest(req);
 
@@ -73,4 +78,3 @@ public class MVCFilter implements Filter {
     }
 
 }
-

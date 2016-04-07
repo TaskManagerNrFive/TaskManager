@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+<<<<<<< HEAD
  * Created by andrew on 3/29/16.
  */
+
 @Component
 public class HelloWorldController implements MVCController {
 
