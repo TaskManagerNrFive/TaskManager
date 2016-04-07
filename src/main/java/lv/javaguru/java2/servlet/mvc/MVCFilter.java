@@ -18,6 +18,8 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         urlToControllerMap = new HashMap<>();
         urlToControllerMap.put("/hello", new HelloWorldController());
+        urlToControllerMap.put("/newTeam", new newTeamFormController());
+        urlToControllerMap.put("/newTeamRegistration", new newTeamRegistrationController());
     }
 
     @Override
