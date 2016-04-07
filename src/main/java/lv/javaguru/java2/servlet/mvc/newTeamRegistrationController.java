@@ -3,12 +3,15 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.TeamDAOImpl;
 import lv.javaguru.java2.domain.Team;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  */
+
+@Component
 public class newTeamRegistrationController implements MVCController {
 
     @Override
