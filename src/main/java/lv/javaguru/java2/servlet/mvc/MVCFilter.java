@@ -34,6 +34,7 @@ public class MVCFilter implements Filter {
         }
 
         urlToControllerMap = new HashMap<>();
+        urlToControllerMap.put("/", getBean(HelloWorldController.class));
         urlToControllerMap.put("/hello", getBean(HelloWorldController.class));
         urlToControllerMap.put("/taskTypes", getBean(TaskTypesController.class));
         urlToControllerMap.put("/hello", getBean(HelloWorldController.class));
