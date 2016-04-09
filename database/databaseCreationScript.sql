@@ -48,6 +48,18 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`teams` (
 
 INSERT INTO teams (Name) VALUES ('Test Team');
 
+CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
+  `TaskTypeID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` CHAR(32) NOT NULL,
+  `Description` TEXT,
+  `UserId` INT(11),
+  PRIMARY KEY (`TaskTypeID`)
+);
+
+INSERT INTO task_types (Name) VALUES ("Email");
+INSERT INTO task_types (Name) VALUES ("Phone call");
+INSERT INTO task_types (Name) VALUES ("Meeting");
+
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
