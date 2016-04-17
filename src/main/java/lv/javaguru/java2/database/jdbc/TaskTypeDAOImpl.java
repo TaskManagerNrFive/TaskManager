@@ -18,6 +18,24 @@ import java.util.List;
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
 
     @Override
+    public void delete(Long id) throws DBException {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("delete from task_types where TaskTypeID = ?");
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskTypeDAOImpl.delete()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public void create(TaskType taskType) throws DBException {
         if (taskType == null) {
             return;
@@ -59,6 +77,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
             while (resultSet.next()) {
                 TaskType taskType = new TaskType();
                 taskType.setName(resultSet.getString("Name"));
+                taskType.setTaskTypeId(resultSet.getLong("TaskTypeId"));
                 taskTypes.add(taskType);
             }
         } catch (Throwable e) {

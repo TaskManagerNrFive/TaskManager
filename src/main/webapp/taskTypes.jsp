@@ -23,7 +23,10 @@
 
 <ul>
 <% for(TaskType tt:taskTypes ) { %>
-    <li><%= tt.getName()  %></li>
+    <li>
+        <%= tt.getName()  %>
+        <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
+    </li>
 <% } %>
 </ul>
 </body>
