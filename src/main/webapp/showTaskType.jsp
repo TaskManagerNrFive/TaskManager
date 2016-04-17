@@ -25,7 +25,9 @@
 
     <h3>Task type</h3>
     <%= taskType.getName()  %>
+    <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">Edit</a>
     <a href="/java2/destroyTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">x</a>
+
 
 </body>
 </html>

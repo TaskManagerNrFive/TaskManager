@@ -18,6 +18,30 @@ import java.util.List;
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
 
     @Override
+    public void update(TaskType taskType) throws DBException {
+        if (taskType == null) {
+            return;
+        }
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update task_types set Name = ?" +
+                            "where TaskTypeID = ?");
+            preparedStatement.setString(1, taskType.getName());
+            preparedStatement.setLong(2, taskType.getTaskTypeID());
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskTypeDAOImpl.update()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public TaskType getById(Long id) throws DBException {
         Connection connection = null;
 

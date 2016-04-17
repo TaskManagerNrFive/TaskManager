@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface TaskTypeDAO {
 
+    void update(TaskType user) throws DBException;
+
     TaskType getById(Long id) throws DBException;
 
     void delete(Long id) throws DBException;

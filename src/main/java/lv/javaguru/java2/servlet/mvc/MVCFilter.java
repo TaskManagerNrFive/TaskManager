@@ -41,6 +41,8 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/createTaskType", getBean(createTaskTypeController.class));
         urlToControllerMap.put("/destroyTaskType", getBean(destroyTaskTypeController.class));
         urlToControllerMap.put("/showTaskType", getBean(showTaskTypeController.class));
+        urlToControllerMap.put("/editTaskType", getBean(editTaskTypeController.class));
+        urlToControllerMap.put("/updateTaskType", getBean(updateTaskTypeController.class));
         urlToControllerMap.put("/newTeam", getBean(newTeamFormController.class));
         urlToControllerMap.put("/newTeamRegistration",
                                 getBean(newTeamRegistrationController.class));

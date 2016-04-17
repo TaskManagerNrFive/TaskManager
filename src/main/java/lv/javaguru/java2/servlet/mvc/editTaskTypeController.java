@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by andrew on 4/17/16.
  */
 @Component
-public class showTaskTypeController implements MVCController  {
+public class editTaskTypeController implements MVCController {
 
     @Override
     public MVCModel processRequest(HttpServletRequest req) {
@@ -21,11 +21,12 @@ public class showTaskTypeController implements MVCController  {
 
             TaskTypeDAOImpl taskTypeDAO = new TaskTypeDAOImpl();
             taskType = taskTypeDAO.getById(taskTypeId);
-            mvcModel = new MVCModel("/showTaskType.jsp", taskType);
+            mvcModel = new MVCModel("/editTaskTypeForm.jsp", taskType);
         }
         catch (Exception e) {
             mvcModel = new MVCModel("/newTaskTypeForm.jsp", "Save error has occured, try later.");
         }
         return mvcModel;
     }
+
 }

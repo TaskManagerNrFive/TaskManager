@@ -10,18 +10,24 @@ import javax.servlet.http.HttpServletRequest;
  * Created by andrew on 4/17/16.
  */
 @Component
-public class showTaskTypeController implements MVCController  {
+public class updateTaskTypeController implements MVCController {
 
-    @Override
     public MVCModel processRequest(HttpServletRequest req) {
+        /* need to check form params here too */
         MVCModel mvcModel;
         try {
+
             long taskTypeId = Long.parseLong(req.getParameter("taskTypeId"));
+            String newName = req.getParameter("name");
+
             TaskType taskType = null;
 
             TaskTypeDAOImpl taskTypeDAO = new TaskTypeDAOImpl();
             taskType = taskTypeDAO.getById(taskTypeId);
-            mvcModel = new MVCModel("/showTaskType.jsp", taskType);
+
+            taskType.setName(newName);
+            taskTypeDAO.update(taskType);
+            /* temporary */ return new MVCModel("/helloWorld.jsp", "Task type was updated!");
         }
         catch (Exception e) {
             mvcModel = new MVCModel("/newTaskTypeForm.jsp", "Save error has occured, try later.");
