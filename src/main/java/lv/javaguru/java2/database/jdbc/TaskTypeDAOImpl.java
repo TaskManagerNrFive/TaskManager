@@ -18,6 +18,33 @@ import java.util.List;
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
 
     @Override
+    public TaskType getById(Long id) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from task_types where TaskTypeID = ?");
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            TaskType taskType = null;
+            if (resultSet.next()) {
+                taskType = new TaskType();
+                taskType.setTaskTypeId(resultSet.getLong("TaskTypeID"));
+                taskType.setName(resultSet.getString("Name"));
+                taskType.setDescription(resultSet.getString("Description"));
+            }
+            return taskType;
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskTypeDAOImpl.getById()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public void delete(Long id) throws DBException {
         Connection connection = null;
         try {
