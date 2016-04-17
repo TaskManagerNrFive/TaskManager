@@ -5,7 +5,15 @@
 </head>
 <body>
 
-    <h1>H<%= request.getAttribute("data")  %></h1>
+    <h3><%= request.getAttribute("data")  %></h3>
 
+    <ul>
+        <li>
+            Home page
+        </li>
+       <li>
+           <a href="/java2/taskTypes">Task types</a>
+       </li>
+    </ul>
 </body>
 </html>

@@ -6,12 +6,21 @@
     <title>Task types page</title>
 </head>
 <body>
+
+<ul>
+    <li>
+        <a href="/java2/hello">Home page</a>
+    </li>
+    <li>
+        Task types
+    </li>
+</ul>
+
 <h1>Task Types</h1>
+<a href="/java2/newTaskType">Create new</a>
+
 <% List<TaskType> taskTypes = (List<TaskType>) request.getAttribute("data");  %>
 
-<%= request.getAttribute("data") %>
-<%= taskTypes.size() %>
-<%= request.getAttribute("data") %>
 <ul>
 <% for(TaskType tt:taskTypes ) { %>
     <li><%= tt.getName()  %></li>

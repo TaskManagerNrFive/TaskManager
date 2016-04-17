@@ -17,6 +17,37 @@ import java.util.List;
 @Component
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
 
+    @Override
+    public void create(TaskType taskType) throws DBException {
+        if (taskType == null) {
+            return;
+        }
+
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("insert into task_types values (default, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, taskType.getName());
+            preparedStatement.setString(2, "");
+            preparedStatement.setString(3, "0");
+
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if (rs.next()){
+                taskType.setTaskTypeId(rs.getLong(1));
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.create()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+    }
+
     public List<TaskType> getAll() throws DBException {
         List<TaskType> taskTypes =  new ArrayList<TaskType>();
         Connection connection = null;

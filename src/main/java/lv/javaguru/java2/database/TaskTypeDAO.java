@@ -2,6 +2,9 @@ package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.domain.TaskType;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -9,5 +12,10 @@ import java.util.List;
  */
 public interface TaskTypeDAO {
 
+    void create(TaskType taskType) throws DBException;
+
     List<TaskType> getAll() throws DBException;
+
+
+
 }
