@@ -39,7 +39,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setUserId(rs.getLong(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute hibernate.create()");
+            System.out.println("Exception while execute UserDAOImpl.create()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -67,7 +67,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             }
             return user;
         } catch (Throwable e) {
-            System.out.println("Exception while execute hibernate.getById()");
+            System.out.println("Exception while execute UserDAOImpl.getById()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -91,7 +91,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 users.add(user);
             }
         } catch (Throwable e) {
-            System.out.println("Exception while getting customer list hibernate.getList()");
+            System.out.println("Exception while getting customer list UserDAOImpl.getList()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -110,7 +110,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute hibernate.delete()");
+            System.out.println("Exception while execute UserDAOImpl.delete()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -135,7 +135,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setLong(3, user.getUserId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute hibernate.update()");
+            System.out.println("Exception while execute UserDAOImpl.update()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
