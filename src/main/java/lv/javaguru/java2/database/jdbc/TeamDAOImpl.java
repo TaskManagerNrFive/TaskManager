@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TeamDAO;
 import lv.javaguru.java2.domain.Team;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.util.List;
 /**
  * Created by NightStranger on 4/5/2016.
  */
+
+@Component("JDBC_TeamDAO")
 public class TeamDAOImpl extends DAOImpl implements TeamDAO {
 
     @Override
@@ -72,6 +75,7 @@ public class TeamDAOImpl extends DAOImpl implements TeamDAO {
         }
     }
 
+    @Override
     public List<Team> getAll() throws DBException {
         List<Team> teams = new ArrayList<Team>();
         Connection connection = null;

@@ -1,8 +1,9 @@
 package lv.javaguru.java2.servlet.mvc;
 
-import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.TeamDAOImpl;
+import lv.javaguru.java2.database.*;
 import lv.javaguru.java2.domain.Team;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class newTeamRegistrationController implements MVCController {
 
+    @Autowired
+    @Qualifier("ORM_TeamDAO")
+    private TeamDAO teamDAO;
+
     @Override
     public MVCModel processRequest(HttpServletRequest req) {
         /* need to check form params here too */
@@ -24,7 +29,6 @@ public class newTeamRegistrationController implements MVCController {
             String newDescription = req.getParameter("description");
             team.setName(newName);
             team.setDescription(newDescription);
-            TeamDAOImpl teamDAO = new TeamDAOImpl();
             teamDAO.create(team);
             /* temporary */ return new MVCModel("/helloWorld.jsp", "Record created!");
         }

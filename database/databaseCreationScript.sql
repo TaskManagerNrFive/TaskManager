@@ -40,13 +40,11 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
 DROP TABLE IF EXISTS `Java2_test`.`teams` ;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`teams` (
-  `TeamID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Name` CHAR(32) NOT NULL,
+  `TeamID` BIGINT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(32) NOT NULL,
   `Description` TEXT,
   PRIMARY KEY (`TeamID`)
 );
-
-INSERT INTO teams (Name) VALUES ('Test Team');
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
   `TaskTypeID` INT(11) NOT NULL AUTO_INCREMENT,
