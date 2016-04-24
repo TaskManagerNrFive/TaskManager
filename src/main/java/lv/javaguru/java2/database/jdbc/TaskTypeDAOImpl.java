@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskTypeDAO;
 import lv.javaguru.java2.domain.TaskType;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,8 +15,9 @@ import java.util.List;
 /**
  * Created by andrew on 4/3/16.
  */
-@Component
+@Component("JDBC_TaskTypeDAO")
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
+
 
     @Override
     public void update(TaskType taskType) throws DBException {
@@ -30,7 +32,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
                     .prepareStatement("update task_types set Name = ?" +
                             "where TaskTypeID = ?");
             preparedStatement.setString(1, taskType.getName());
-            preparedStatement.setLong(2, taskType.getTaskTypeID());
+            preparedStatement.setInt(2, (int) taskType.getTaskTypeID());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskTypeDAOImpl.update()");
@@ -42,19 +44,19 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
     }
 
     @Override
-    public TaskType getById(Long id) throws DBException {
+    public TaskType getById(int id) throws DBException {
         Connection connection = null;
 
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("select * from task_types where TaskTypeID = ?");
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             TaskType taskType = null;
             if (resultSet.next()) {
                 taskType = new TaskType();
-                taskType.setTaskTypeId(resultSet.getLong("TaskTypeID"));
+                taskType.setTaskTypeId(resultSet.getInt("TaskTypeID"));
                 taskType.setName(resultSet.getString("Name"));
                 taskType.setDescription(resultSet.getString("Description"));
             }
@@ -69,13 +71,13 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
     }
 
     @Override
-    public void delete(Long id) throws DBException {
+    public void delete(int id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from task_types where TaskTypeID = ?");
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskTypeDAOImpl.delete()");
@@ -105,7 +107,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
-                taskType.setTaskTypeId(rs.getLong(1));
+                taskType.setTaskTypeId(rs.getInt(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.create()");
@@ -128,7 +130,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
             while (resultSet.next()) {
                 TaskType taskType = new TaskType();
                 taskType.setName(resultSet.getString("Name"));
-                taskType.setTaskTypeId(resultSet.getLong("TaskTypeId"));
+                taskType.setTaskTypeId(resultSet.getInt("TaskTypeId"));
                 taskTypes.add(taskType);
             }
         } catch (Throwable e) {

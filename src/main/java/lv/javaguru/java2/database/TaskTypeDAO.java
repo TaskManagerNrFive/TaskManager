@@ -14,9 +14,9 @@ public interface TaskTypeDAO {
 
     void update(TaskType user) throws DBException;
 
-    TaskType getById(Long id) throws DBException;
+    TaskType getById(int id) throws DBException;
 
-    void delete(Long id) throws DBException;
+    void delete(int id) throws DBException;
 
     void create(TaskType taskType) throws DBException;
 

@@ -17,7 +17,7 @@ public class updateTaskTypeController implements MVCController {
         MVCModel mvcModel;
         try {
 
-            long taskTypeId = Long.parseLong(req.getParameter("taskTypeId"));
+            int taskTypeId = Integer.parseInt(req.getParameter("taskTypeId"));
             String newName = req.getParameter("name");
 
             TaskType taskType = null;

@@ -17,7 +17,7 @@ public class destroyTaskTypeController implements MVCController {
         /* need to check form params here too */
         MVCModel mvcModel;
         try {
-            long taskTypeId = Long.parseLong(req.getParameter("taskTypeId"));
+            int taskTypeId = Integer.parseInt(req.getParameter("taskTypeId"));
 
             TaskTypeDAOImpl taskTypeDAO = new TaskTypeDAOImpl();
             taskTypeDAO.delete(taskTypeId);

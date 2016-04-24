@@ -16,7 +16,7 @@ public class showTaskTypeController implements MVCController  {
     public MVCModel processRequest(HttpServletRequest req) {
         MVCModel mvcModel;
         try {
-            long taskTypeId = Long.parseLong(req.getParameter("taskTypeId"));
+            int taskTypeId = Integer.parseInt(req.getParameter("taskTypeId"));
             TaskType taskType = null;
 
             TaskTypeDAOImpl taskTypeDAO = new TaskTypeDAOImpl();

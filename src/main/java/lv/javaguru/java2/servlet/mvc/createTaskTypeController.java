@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.jdbc.TeamDAOImpl;
 import lv.javaguru.java2.domain.TaskType;
 import lv.javaguru.java2.domain.Team;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class createTaskTypeController implements MVCController {
 
+    @Transactional
     public MVCModel processRequest(HttpServletRequest req) {
         /* need to check form params here too */
         MVCModel mvcModel;
