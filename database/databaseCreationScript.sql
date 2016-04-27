@@ -46,6 +46,10 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`teams` (
   PRIMARY KEY (`TeamID`)
 );
 
+INSERT INTO teams (Name, Description) VALUES ("Test team Nr 1", "Description of test team nr 1");
+INSERT INTO teams (Name, Description) VALUES ("Test team Nr 2", "Description of test team nr 2");
+INSERT INTO teams (Name, Description) VALUES ("Test team Nr 3", "Description of test team nr 3");
+
 CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
   `TaskTypeID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` CHAR(32) NOT NULL,

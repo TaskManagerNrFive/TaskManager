@@ -14,6 +14,9 @@
     <li>
         Task types
     </li>
+    <li>
+        <a href="/java2/teams">Teams</a>
+    </li>
 </ul>
 
 <h1>Task Types</h1>
