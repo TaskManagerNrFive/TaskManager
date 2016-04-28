@@ -7,22 +7,30 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="task_types")
+@Table(name = "task_types")
 public class TaskType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "TaskTypeId", nullable = false)
+    @Column(name = "tasktypeid", nullable = false)
     protected int TaskTypeId;
 
-    @Column(name = "name")
+    @Column(name = "Name")
     protected String name;
 
+    @Column(name = "Description", columnDefinition = "TEXT")
+    protected String description;
+
+//    @ManyToOne
+    @Column(name = "UserId")
+    protected int userId;
 
 //    transient private long taskTypeID;
 //    private String name;
 
-    transient private String description;
+//    transient private String name;
+//    transient private String description;
+//    transient private int user_id;
 
     public long getTaskTypeID() {
         return TaskTypeId;

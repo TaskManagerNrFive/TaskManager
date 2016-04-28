@@ -1,6 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
-import lv.javaguru.java2.database.TaskTypeDAO;
+import lv.javaguru.java2.database.*;
 import lv.javaguru.java2.domain.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,7 +1,11 @@
 package lv.javaguru.java2.domain;
 
 
+import org.springframework.context.annotation.Lazy;
+
+import javax.persistence.OneToMany;
 import java.text.Collator;
+import java.util.List;
 import java.util.Locale;
 
 public class User implements Comparable{
@@ -13,6 +17,8 @@ public class User implements Comparable{
     private String email;
     private String password;
 
+//    @OneToMany(fetch = Lazy)
+//    private List<TaskType> taskTypes;
 
     public long getUserId() {
         return userId;

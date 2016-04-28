@@ -1,9 +1,13 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.database.TaskTypeDAO;
+import lv.javaguru.java2.database.TeamDAO;
 import lv.javaguru.java2.database.jdbc.TaskTypeDAOImpl;
 import lv.javaguru.java2.database.jdbc.TeamDAOImpl;
 import lv.javaguru.java2.domain.TaskType;
 import lv.javaguru.java2.domain.Team;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +17,11 @@ import javax.servlet.http.HttpServletRequest;
  * Created by andrew on 4/9/16.
  */
 @Component
-public class createTaskTypeController implements MVCController {
+public class CreateTaskTypeControllerImpl implements CreateTaskTypeController  {
+
+    @Autowired
+    @Qualifier("ORM_TaskTypeDAO")
+    private TaskTypeDAO taskTypeDAO;
 
     @Transactional
     public MVCModel processRequest(HttpServletRequest req) {
@@ -23,7 +31,6 @@ public class createTaskTypeController implements MVCController {
             TaskType taskType = new TaskType();
             String newName = req.getParameter("name");
             taskType.setName(newName);
-            TaskTypeDAOImpl taskTypeDAO = new TaskTypeDAOImpl();
             taskTypeDAO.create(taskType);
             /* temporary */ return new MVCModel("/helloWorld.jsp", "New Task type created!");
         }

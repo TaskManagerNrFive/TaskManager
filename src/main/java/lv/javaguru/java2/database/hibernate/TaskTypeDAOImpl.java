@@ -20,24 +20,24 @@ import java.util.List;
  */
 @Component("ORM_TaskTypeDAO")
 @Transactional
-public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
+public class TaskTypeDAOImpl implements TaskTypeDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
+//    @Override
     public void create(TaskType taskType) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         session.persist(taskType);
     }
 
-    @Override
+//    @Override
     public TaskType getById(int id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return (TaskType) session.get(TaskType.class, id);
     }
 
-    @Override
+//    @Override
     public void delete(int id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         TaskType taskType = (TaskType) session.get(TaskType.class, id);
@@ -45,13 +45,13 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
             session.delete(taskType);
     }
 
-    @Override
+//    @Override
     public void update(TaskType taskType) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         session.update(taskType);
     }
 
-    @Override
+//    @Override
     public List<TaskType> getAll() throws DBException {
         Session session = sessionFactory.getCurrentSession();
 
