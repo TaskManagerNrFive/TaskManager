@@ -12,12 +12,8 @@
 </head>
 <body>
 
-<%
-String formName = request.getParameter("name");
-if (formName == null) formName = "";
-String formDescription = request.getParameter("description");
-if (formDescription == null) formDescription = "";
-%>
+<% request.setAttribute("currentMenuID", 3); %>
+<%@ include file="/mainMenuInclude.jsp" %>
 
 <br>
 <form name="newTeamRegistration" method="POST" action="newTeamRegistration">
@@ -25,22 +21,14 @@ if (formDescription == null) formDescription = "";
         <tr>
             <td colspan="2" align="center"><h2>New team registration.</h2></td>
         </tr>
-        <%
-            Object err = request.getAttribute("data");
-            if (err != null) {
-        %>
-        <tr style="color:red;">
-            <td colspan="2"><h3> <%= err %> </h3></td>
-        </tr>
-        <% } %>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" size="40" required value="<%=formName%>"></td>
+            <td><input type="text" name="name" size="40" required value=""></td>
         </tr>
         <tr/>
         <tr>
             <td>Description:</td>
-            <td><textarea name="description" cols="40" rows="3"><%=formDescription%></textarea></td>
+            <td><textarea name="description" cols="40" rows="3"></textarea></td>
         </tr>
         <tr/>
         <tr>

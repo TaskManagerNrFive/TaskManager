@@ -24,6 +24,8 @@ public class MVCFilter implements Filter {
 
     private static Logger logger = Logger.getLogger(MVCFilter.class.getName());
 
+    private MVCController incorrectURLController;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         try {
@@ -46,6 +48,12 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/newTeam", getBean(newTeamFormController.class));
         urlToControllerMap.put("/newTeamRegistration",
                                 getBean(newTeamRegistrationController.class));
+        urlToControllerMap.put("/teams", getBean(TeamsController.class));
+        urlToControllerMap.put("/deleteTeam", getBean(DeleteTeamController.class));
+        urlToControllerMap.put("/showTeam", getBean(ShowTeamController.class));
+        urlToControllerMap.put("/editTeam", getBean(EditTeamController.class));
+        urlToControllerMap.put("/updateTeam", getBean(UpdateTeamController.class));
+        incorrectURLController = getBean(IncorrectURLController.class);
     }
 
     private MVCController getBean(Class clazz) {
@@ -62,7 +70,8 @@ public class MVCFilter implements Filter {
         String contextURI = req.getServletPath();
         String method = req.getMethod();
 
-        MVCController controller = urlToControllerMap.get(contextURI);
+        MVCController controller = urlToControllerMap.getOrDefault(contextURI,
+                                                                    incorrectURLController);
         if (method.equalsIgnoreCase("GET")) {
 
         }
