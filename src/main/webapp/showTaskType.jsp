@@ -32,7 +32,7 @@
         <tbody>
             <tr>
                 <td><%= taskType.getName()  %></td>
-                <td></td>
+                <td><%= taskType.getDescription()  %></td>
                 <td>
                     <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">Edit</a>
                 </td>

@@ -26,12 +26,14 @@ public class updateTaskTypeController implements MVCController {
 
             int taskTypeId = Integer.parseInt(req.getParameter("taskTypeId"));
             String newName = req.getParameter("name");
+            String newDescription = req.getParameter("description");
 
             TaskType taskType = null;
 
             taskType = taskTypeDAO.getById(taskTypeId);
 
             taskType.setName(newName);
+            taskType.setDescription(newDescription);
             taskTypeDAO.update(taskType);
             /* temporary */ return new MVCModel("/helloWorld.jsp", "Task type was updated!");
         }

@@ -16,7 +16,11 @@
         <form name="createTaskType" method="POST" action="createTaskType">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" size="40" required value="" class="form-control">
+                <input type="text" name="name" required value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-default">Submit</button>

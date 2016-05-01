@@ -32,7 +32,7 @@
                             <%= tt.getName()  %>
                         </a>
                     </td>
-                    <td></td>
+                    <td><%= tt.getDescription()  %></td>
                     <td>
                         <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
                     </td>

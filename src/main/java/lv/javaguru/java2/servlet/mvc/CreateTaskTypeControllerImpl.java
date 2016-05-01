@@ -26,7 +26,9 @@ public class CreateTaskTypeControllerImpl implements CreateTaskTypeController  {
         try {
             TaskType taskType = new TaskType();
             String newName = req.getParameter("name");
+            String newDescription = req.getParameter("description");
             taskType.setName(newName);
+            taskType.setDescription(newDescription);
             taskTypeDAO.create(taskType);
             /* temporary */ return new MVCModel("/helloWorld.jsp", "New Task type created!");
         }
