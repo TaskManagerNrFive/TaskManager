@@ -32,7 +32,7 @@
             <th>Description</th>
             <th>User id</th>
             <th>Responsible id</th>
-            <th>Id</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,7 +49,9 @@
                 <td><%= tt.getDescription()  %></td>
                 <td><%= tt.getUserId()  %></td>
                 <td><%= tt.getresponsibleId()  %></td>
-                <td><%= tt.getTaskId()  %></td>
+                <td>
+                    <a href="/java2/destroyTask?taskId=<%= tt.getTaskId()  %>">x</a>
+                </td>
             </tr>
         <% } %>
     </tbody>

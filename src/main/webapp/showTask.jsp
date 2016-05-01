@@ -43,7 +43,9 @@
         <td><%= task.getDescription()  %></td>
         <td><%= task.getUserId()  %></td>
         <td><%= task.getresponsibleId()  %></td>
-        <td><%= task.getTaskId()  %></td>
+        <td>
+            <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">x</a>
+        </td>
     </tr>
     </tbody>
 </table>

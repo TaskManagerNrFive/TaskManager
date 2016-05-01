@@ -19,6 +19,24 @@ import java.util.List;
 public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
     @Override
+    public void delete(int id) throws DBException {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("delete from tasks where TaskID = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskDAOImpl.delete()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
     public Task getById(int id) throws DBException {
         Connection connection = null;
 

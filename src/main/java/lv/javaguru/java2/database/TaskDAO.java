@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface TaskDAO {
 
+    void delete(int id) throws DBException;
+
     Task getById(int id) throws DBException;
 
     List<Task> getAll() throws DBException;
