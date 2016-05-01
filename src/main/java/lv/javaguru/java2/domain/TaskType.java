@@ -25,13 +25,6 @@ public class TaskType {
     @Column(name = "UserId")
     protected int userId;
 
-//    transient private long taskTypeID;
-//    private String name;
-
-//    transient private String name;
-//    transient private String description;
-//    transient private int user_id;
-
     public long getTaskTypeID() {
         return TaskTypeId;
     }

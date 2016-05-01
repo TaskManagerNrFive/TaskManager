@@ -6,18 +6,8 @@
     <title>Task types page</title>
 </head>
 <body>
-
-<ul>
-    <li>
-        <a href="/java2/hello">Home page</a>
-    </li>
-    <li>
-        Task types
-    </li>
-    <li>
-        <a href="/java2/teams">Teams</a>
-    </li>
-</ul>
+<% request.setAttribute("currentMenuID", 2); %>
+<%@ include file="/mainMenuInclude.jsp" %>
 
 <h1>Task Types</h1>
 <a href="/java2/newTaskType">Create new</a>

@@ -12,14 +12,8 @@
 </head>
 <body>
 
-<ul>
-    <li>
-        <a href="/java2/hello">Home page</a>
-    </li>
-    <li>
-        <a href="/java2/taskTypes">Task types</a>
-    </li>
-</ul>
+<% request.setAttribute("currentMenuID", 2); %>
+<%@ include file="/mainMenuInclude.jsp" %>
 
 <% TaskType taskType = (TaskType) request.getAttribute("data"); %>
 

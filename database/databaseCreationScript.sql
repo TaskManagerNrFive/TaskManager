@@ -27,15 +27,18 @@ DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
   `TaskID` INT(11) NOT NULL AUTO_INCREMENT,
-  `DueDatetime` DATETIME NOT NULL,
+  `DueDatetime` DATETIME,
   `DoneDate` DATE,
   `Title` VARCHAR(255),
-  `Description` TEXT NOT NULL,
-  `UserId` INT(11) NOT NULL,
-  `ResponsibleId` INT(11) NOT NULL,
+  `Description` TEXT,
+  `UserId` INT(11),
+  `ResponsibleId` INT(11),
   `TaskType` CHAR(32),
   PRIMARY KEY (`TaskID`)
 );
+
+INSERT INTO `Java2_test`.`tasks` (Title, TaskType) VALUES ("Task title 1", "Email");
+INSERT INTO `Java2_test`.`tasks` (Title, TaskType) VALUES ("Task title 2", "Phone call");
 
 DROP TABLE IF EXISTS `Java2_test`.`teams` ;
 

@@ -53,6 +53,8 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/showTeam", getBean(ShowTeamController.class));
         urlToControllerMap.put("/editTeam", getBean(EditTeamController.class));
         urlToControllerMap.put("/updateTeam", getBean(UpdateTeamController.class));
+        urlToControllerMap.put("/tasks", getBean(TasksController.class));
+        urlToControllerMap.put("/showTask", getBean(ShowTaskController.class));
         incorrectURLController = getBean(IncorrectURLController.class);
     }
 
