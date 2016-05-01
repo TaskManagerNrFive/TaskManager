@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
   PRIMARY KEY (`TaskID`)
 );
 
-INSERT INTO `Java2_test`.`tasks` (Title, TaskType) VALUES ("Task title 1", "Email");
-INSERT INTO `Java2_test`.`tasks` (Title, TaskType) VALUES ("Task title 2", "Phone call");
+INSERT INTO `Java2_test`.`tasks` (Title, TaskType, Description, DoneDate, DueDatetime, UserId, ResponsibleId) VALUES ("Task title 1", "Email", "Description1", "2016-05-01", "2016-05-01 10:00:00", 1, 1);
+INSERT INTO `Java2_test`.`tasks` (Title, TaskType, Description, DueDatetime, UserId, ResponsibleId) VALUES ("Task title 2", "Phone call", "Description2", "2016-05-01 11:00:00", 1, 1);
 
 DROP TABLE IF EXISTS `Java2_test`.`teams` ;
 
