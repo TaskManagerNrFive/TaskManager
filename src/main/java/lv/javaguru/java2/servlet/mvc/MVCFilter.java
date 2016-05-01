@@ -56,6 +56,9 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/tasks", getBean(TasksController.class));
         urlToControllerMap.put("/showTask", getBean(ShowTaskController.class));
         urlToControllerMap.put("/destroyTask", getBean(DestroyTaskController.class));
+        urlToControllerMap.put("/editTask", getBean(EditTaskController.class));
+        urlToControllerMap.put("/newTask", getBean(NewTaskController.class));
+        urlToControllerMap.put("/createTask", getBean(CreateTaskController.class));
         incorrectURLController = getBean(IncorrectURLController.class);
     }
 

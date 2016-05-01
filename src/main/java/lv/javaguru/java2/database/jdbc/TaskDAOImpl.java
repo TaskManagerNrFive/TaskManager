@@ -3,12 +3,9 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.domain.TaskType;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,48 @@ import java.util.List;
  */
 @Component("JDBC_TaskDAO")
 public class TaskDAOImpl extends DAOImpl implements TaskDAO {
+
+    @Override
+    public void create(Task task) throws DBException {
+        if (task == null) {
+            return;
+        }
+
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("insert into tasks values (default, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
+//            preparedStatement.setTimestamp(1, new java.sql.Timestamp(task.getDueDatetime().getTime()));
+//            preparedStatement.setDate(2, new java.sql.Date(task.getDoneDate().getTime()));
+
+            preparedStatement.setString(1, "2016-05-01 00:00:00");
+            preparedStatement.setString(2, "2016-05-01");
+            preparedStatement.setString(3, task.getTitle());
+            preparedStatement.setString(4, task.getDescription());
+//
+            preparedStatement.setInt(5, (int) 1);
+            preparedStatement.setInt(6, (int) 1);
+//            preparedStatement.setString(7, task.getTaskType());
+            preparedStatement.setString(7, "");
+
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if (rs.next()){
+                task.setTaskId(rs.getInt(1));
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskDAOImpl.create()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+    }
+
 
     @Override
     public void delete(int id) throws DBException {

@@ -1,11 +1,7 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskTypeDAO;
-import lv.javaguru.java2.database.TeamDAO;
-import lv.javaguru.java2.database.jdbc.TaskTypeDAOImpl;
-import lv.javaguru.java2.database.jdbc.TeamDAOImpl;
 import lv.javaguru.java2.domain.TaskType;
-import lv.javaguru.java2.domain.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

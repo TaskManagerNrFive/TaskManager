@@ -19,6 +19,9 @@
 <%@ include file="/mainMenuInclude.jsp" %>
 
 <h1>Tasks</h1>
+<a href="/java2/newTask">Create new</a>
+<br>
+<br>
 
 <% List<Task> tasks = (List<Task>) request.getAttribute("data");  %>
 
@@ -32,6 +35,7 @@
             <th>Description</th>
             <th>User id</th>
             <th>Responsible id</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +53,9 @@
                 <td><%= tt.getDescription()  %></td>
                 <td><%= tt.getUserId()  %></td>
                 <td><%= tt.getresponsibleId()  %></td>
+                <td>
+                    <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">Edit</a>
+                </td>
                 <td>
                     <a href="/java2/destroyTask?taskId=<%= tt.getTaskId()  %>">x</a>
                 </td>
