@@ -15,39 +15,46 @@
 <body>
 
 <% request.setAttribute("currentMenuID", 4); %>
-<%@ include file="/mainMenuInclude.jsp" %>
+<%@ include file="/Header.jsp" %>
 
-<h1>Task</h1>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
-<% Task task = (Task) request.getAttribute("data"); %>
+        <h1>Task</h1>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Due date time</th>
-        <th>Done date</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>User id</th>
-        <th>Responsible id</th>
-        <th>Id</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><%= task.getTitle()  %></td>
-        <td><%= task.getDueDatetime()  %></td>
-        <td><%= task.getDoneDate()  %></td>
-        <td><%= task.getTaskType()  %></td>
-        <td><%= task.getDescription()  %></td>
-        <td><%= task.getUserId()  %></td>
-        <td><%= task.getresponsibleId()  %></td>
-        <td>
-            <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">x</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <% Task task = (Task) request.getAttribute("data"); %>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Due date time</th>
+                <th>Done date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>User id</th>
+                <th>Responsible id</th>
+                <th>Id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><%= task.getTitle()  %></td>
+                <td><%= task.getDueDatetime()  %></td>
+                <td><%= task.getDoneDate()  %></td>
+                <td><%= task.getTaskType()  %></td>
+                <td><%= task.getDescription()  %></td>
+                <td><%= task.getUserId()  %></td>
+                <td><%= task.getresponsibleId()  %></td>
+                <td>
+                    <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">x</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </body>
 </html>

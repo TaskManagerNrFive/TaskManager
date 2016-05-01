@@ -12,6 +12,9 @@
             <title>Create new Task</title>
         </head>
 <body>
+<% request.setAttribute("currentMenuID", 4); %>
+<%@ include file="/Header.jsp" %>
+
 
 <%
     String formName = request.getParameter("name");
@@ -19,40 +22,32 @@
 %>
 
 <br>
-<form name="createTask" method="POST" action="createTask">
-    <table cellspacing="15">
-        <tr>
-            <td colspan="2" align="center"><h2>New task</h2></td>
-        </tr>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <form name="createTask" method="POST" action="createTask">
 
-        <tr>
-            <td>Title:</td>
-            <td><input type="text" name="title" size="40" required value=""></td>
-        </tr>
-
-        <tr>
-            <td>Description:</td>
-            <td><input type="text" name="description" size="40" required value=""></td>
-         </tr>
-
-        <tr>
-            <td>Due Date and time:</td>
-            <td><input type="text" name="dueDateTime" size="40" value=""></td>
-        </tr>
-
-        <tr>
-            <td>Done date:</td>
-            <td><input type="text" name="doneDate" size="40" value=""></td>
-        </tr>
-
-        <tr>
-            <td colspan="2" align="center">
-                <h3><input value="Create" type="submit"></h3>
-            </td>
-        </tr>
-    </table>
-</form>
-
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" size="40" required value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" size="40" required value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dueDateTime">Due date and time</label>
+                <input type="text" name="dueDateTime" size="40" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="doneDate">Done date</label>
+                <input type="text" name="doneDate" size="40" value="" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </body>
 </html>
 

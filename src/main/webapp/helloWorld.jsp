@@ -5,11 +5,15 @@
 </head>
 <body>
 
-    <h3><%= request.getAttribute("data")  %></h3>
-
     <% request.setAttribute("currentMenuID", 1); %>
-    <%@ include file="/mainMenuInclude.jsp" %>
+    <%@ include file="/Header.jsp" %>
 
-
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h3><%= request.getAttribute("data")  %></h3>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
 </body>
 </html>

@@ -13,15 +13,40 @@
 <body>
 
 <% request.setAttribute("currentMenuID", 2); %>
-<%@ include file="/mainMenuInclude.jsp" %>
+<%@ include file="/Header.jsp" %>
 
 <% TaskType taskType = (TaskType) request.getAttribute("data"); %>
 
-    <h3>Task type</h3>
-    <%= taskType.getName()  %>
-    <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">Edit</a>
-    <a href="/java2/destroyTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">x</a>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
+    <h3>Task type</h3>
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= taskType.getName()  %></td>
+                <td></td>
+                <td>
+                    <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">Edit</a>
+                </td>
+                <td>
+                    <a href="/java2/destroyTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">x</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
 
 </body>
 </html>

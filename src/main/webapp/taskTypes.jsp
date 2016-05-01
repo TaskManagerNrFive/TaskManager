@@ -7,23 +7,41 @@
 </head>
 <body>
 <% request.setAttribute("currentMenuID", 2); %>
-<%@ include file="/mainMenuInclude.jsp" %>
-
-<h1>Task Types</h1>
-<a href="/java2/newTaskType">Create new</a>
-
 <% List<TaskType> taskTypes = (List<TaskType>) request.getAttribute("data");  %>
 
-<ul>
-<% for(TaskType tt:taskTypes ) { %>
-    <li>
-        <a href="/java2/showTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">
-            <%= tt.getName()  %>
-        </a>
-        &nbsp;
-        <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
-    </li>
-<% } %>
-</ul>
+<%@ include file="/Header.jsp" %>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h1>Task Types</h1>
+        <a href="/java2/newTaskType" class="btn btn-default">Create new</a>
+
+
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </thead>
+            <tbody>
+            <% for(TaskType tt:taskTypes ) { %>
+                <tr>
+                    <td>
+                        <a href="/java2/showTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">
+                            <%= tt.getName()  %>
+                        </a>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
+                    </td>
+1               </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </body>
 </html>

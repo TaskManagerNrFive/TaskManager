@@ -17,16 +17,24 @@
     mainMenuItems.add(new MainMenuItem(3, "Teams", "/java2/teams"));
     mainMenuItems.add(new MainMenuItem(4, "Tasks", "/java2/tasks"));
 %>
-
-<ul>
-    <%
-        for (MainMenuItem mainMenuItem : mainMenuItems) { %>
-        <li>
-            <% if (mainMenuItem.getId() != currentMenuID) { %>
-                <a href="<%= mainMenuItem.getUrl() %>"> <%= mainMenuItem.getName() %> </a>
-            <% } else { %>
-                <%= mainMenuItem.getName() %>
+<br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <ul class="nav nav-tabs">
+            <%
+                for (MainMenuItem mainMenuItem : mainMenuItems) { %>
+                    <% if (mainMenuItem.getId() != currentMenuID) { %>
+                        <li role="presentation">
+                            <a href="<%= mainMenuItem.getUrl() %>" role="button"> <%= mainMenuItem.getName() %> </a>
+                        </li>
+                    <% } else { %>
+                        <li class="active" role="presentation">
+                            <a href="#"><%= mainMenuItem.getName() %></a>
+                        </li>
+                    <% } %>
             <% } %>
-        </li>
-    <% } %>
-</ul>
+        </ul>
+    </div>
+    <div class="col-md-1"></div>
+</div>
