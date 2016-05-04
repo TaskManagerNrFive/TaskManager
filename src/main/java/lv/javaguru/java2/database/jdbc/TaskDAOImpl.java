@@ -29,10 +29,10 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                     connection.prepareStatement("insert into tasks values (default, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setTimestamp(1, task.getDueDatetime());
-//            preparedStatement.setDate(2, new java.sql.Date(task.getDoneDate().getTime()));
+            preparedStatement.setDate(2, task.getDoneDate());
 
 //            preparedStatement.setString(1, "2016-05-01 00:00:00");
-            preparedStatement.setString(2, "2016-05-01");
+//            preparedStatement.setString(2, "2016-05-01");
             preparedStatement.setString(3, task.getTitle());
             preparedStatement.setString(4, task.getDescription());
 //

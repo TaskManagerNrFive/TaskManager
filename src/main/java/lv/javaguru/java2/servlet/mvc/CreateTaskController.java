@@ -30,14 +30,14 @@ public class CreateTaskController implements MVCController {
             String newTitle = req.getParameter("title");
             String newDescription = req.getParameter("description");
             String newTaskType = req.getParameter("taskType");
-//            Date newDoneDate = java.sql.Date.valueOf(req.getParameter("doneDate"));
+            Date newDoneDate = Date.valueOf(req.getParameter("doneDate"));
             Timestamp newdueDateTime = Timestamp.valueOf(req.getParameter("dueDateTime"));
 
             task.setTitle(newTitle);
             task.setTaskType(newTaskType);
             task.setDescription(newDescription);
             task.setDueDatetime(newdueDateTime);
-//            task.setDoneDate(newDoneDate);
+            task.setDoneDate(newDoneDate);
 
             taskDAO.create(task);
             mvcModel = new MVCModel("/helloWorld.jsp", "Record created!");
