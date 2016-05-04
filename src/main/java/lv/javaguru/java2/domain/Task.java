@@ -32,7 +32,7 @@ public class Task {
         if(doneDate != null) {
             formatedDate = new SimpleDateFormat("dd.MM.yyyy").format(doneDate);
         } else {
-            formatedDate = "nothing";
+            formatedDate = "Not done";
         }
         return formatedDate;
     }
@@ -42,7 +42,7 @@ public class Task {
         if(dueDatetime != null) {
             formatedDateTime = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(dueDatetime);
         } else {
-            formatedDateTime = "nothing";
+            formatedDateTime = "Not done";
         }
         return formatedDateTime;
     }

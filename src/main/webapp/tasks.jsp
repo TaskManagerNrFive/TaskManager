@@ -56,7 +56,7 @@
                     <% if(tt.getDoneStatus() == 1) { %>
                         <span class="label label-info"><%= tt.getDoneDateFormated()  %></span>
                     <% } else { %>
-                        <span class="label label-warning">Not done</span>
+                        <span class="label label-warning"><%= tt.getDoneDateFormated()  %></span>
                     <% } %>
                 </td>
                 <td><%= tt.getresponsibleId()  %></td>

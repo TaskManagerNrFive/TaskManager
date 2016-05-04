@@ -41,8 +41,8 @@
             <tbody>
             <tr>
                 <td><%= task.getTitle()  %></td>
-                <td><%= task.getDueDatetime()  %></td>
-                <td><%= task.getDoneDate()  %></td>
+                <td><%= task.getDueDateTimeFormated()  %></td>
+                <td><%= task.getDoneDateFormated()  %></td>
                 <td><%= task.getTaskType()  %></td>
                 <td><%= task.getDescription()  %></td>
                 <td><%= task.getUserId()  %></td>
