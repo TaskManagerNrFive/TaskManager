@@ -41,19 +41,16 @@
             </div>
             <div class="form-group">
                 <label for="doneDate">Done date</label>
-                <input type="text" name="doneDate" size="40" value="" class="form-control">
+                <input type="text" name="doneDate" size="40" value="" class="form-control datepicker">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
     <div class="col-md-1"></div>
 </div>
-</body>
-</html>
-
-</title>
-</head>
-<body>
+<script>
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
 
 </body>
 </html>

@@ -16,6 +16,8 @@
 <%@ include file="/Header.jsp" %>
 <% Task task = (Task) request.getAttribute("data"); %>
 
+
+
 <br>
 <div class="row">
     <div class="col-md-1"></div>
@@ -37,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="doneDate">Done date</label>
-                <input type="text" id="doneDate" name="doneDate" size="40" value="<%= task.getDoneDate()  %>" class="form-control">
+                <input type="text" id="doneDate" name="doneDate" size="40" value="<%= task.getDoneDate()  %>" class="form-control datepicker">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
@@ -45,11 +47,7 @@
     <div class="col-md-1"></div>
 </div>
 </body>
-</html>
-
-</title>
-</head>
-<body>
-
-</body>
+    <script>
+        $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+    </script>
 </html>
