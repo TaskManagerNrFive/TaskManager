@@ -16,8 +16,6 @@
     <div class="col-md-10">
         <h1>Task Types</h1>
         <a href="/java2/newTaskType" class="btn btn-default">Create new</a>
-
-
         <table class="table">
             <thead>
                 <th>Name</th>
@@ -36,7 +34,7 @@
                     <td>
                         <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
                     </td>
-1               </tr>
+               </tr>
             <% } %>
             </tbody>
         </table>
