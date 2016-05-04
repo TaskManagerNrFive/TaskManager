@@ -7,12 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="lv.javaguru.java2.domain.Task" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Task page</title>
 </head>
 <body>
+
+<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
+<% Task task = (Task) dataList.get(0);%>
+<% User user = (User) dataList.get(1);%>
+<% User responsible = (User) dataList.get(2);%>
+
 
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
@@ -22,7 +30,6 @@
     <div class="col-md-10">
 
         <h1>Task</h1>
-        <% Task task = (Task) request.getAttribute("data"); %>
         <a href="/java2/editTask?taskId=<%= task.getTaskId()  %>" class="btn btn-default" role="button">Edit</a>
 
         <table class="table">
@@ -33,7 +40,7 @@
                 <th>Done date</th>
                 <th>Type</th>
                 <th>Description</th>
-                <th>User id</th>
+                <th>User name</th>
                 <th>Responsible id</th>
                 <th></th>
             </tr>
@@ -45,8 +52,8 @@
                 <td><%= task.getDoneDateFormated()  %></td>
                 <td><%= task.getTaskType()  %></td>
                 <td><%= task.getDescription()  %></td>
-                <td><%= task.getUserId()  %></td>
-                <td><%= task.getresponsibleId()  %></td>
+                <td><%= user.getFullName()  %></td>
+                <td><%= responsible.getFullName()  %></td>
                 <td>
                     <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">x</a>
                 </td>

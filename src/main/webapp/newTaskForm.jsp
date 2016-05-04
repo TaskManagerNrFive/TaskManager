@@ -25,6 +25,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-5">
+        <h3>New task</h3>
         <form name="createTask" method="POST" action="createTask">
 
             <div class="form-group">

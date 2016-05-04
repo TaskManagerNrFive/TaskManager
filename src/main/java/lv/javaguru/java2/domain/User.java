@@ -19,6 +19,14 @@ public class User implements Comparable{
 
 //    @OneToMany(fetch = Lazy)
 //    private List<TaskType> taskTypes;
+    public String getFullName() {
+        String fullName;
+        String space = " ";
+        firstName = getFirstName();
+        lastName = getLastName();
+        fullName  = firstName + space + lastName;
+        return fullName;
+    }
 
     public long getUserId() {
         return userId;
