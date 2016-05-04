@@ -30,19 +30,19 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" size="40" required value="" class="form-control">
+                <input type="text" id="title" name="title" size="40" required value="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" name="description" size="40" required value="" class="form-control">
+                <input type="text" id="description" name="description" size="40" required value="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="dueDateTime">Due date and time</label>
-                <input type="text" name="dueDateTime" size="40" value="" class="form-control">
+                <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="doneDate">Done date</label>
-                <input type="text" name="doneDate" size="40" value="" class="form-control datepicker">
+                <input type="text" id="doneDate" name="doneDate" size="40" value="" class="form-control datepicker">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>

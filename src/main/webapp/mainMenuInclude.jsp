@@ -30,7 +30,7 @@
                         </li>
                     <% } else { %>
                         <li class="active" role="presentation">
-                            <a href="#"><%= mainMenuItem.getName() %></a>
+                            <a href="<%= mainMenuItem.getUrl() %>"><%= mainMenuItem.getName() %></a>
                         </li>
                     <% } %>
             <% } %>
