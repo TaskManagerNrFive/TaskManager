@@ -37,6 +37,15 @@ public class Task {
         return formatedDate;
     }
 
+    public String getDueDateTimeFormated() {
+        String formatedDateTime;
+        if(dueDatetime != null) {
+            formatedDateTime = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(dueDatetime);
+        } else {
+            formatedDateTime = "nothing";
+        }
+        return formatedDateTime;
+    }
 
     public Timestamp getDueDatetime() {
         return dueDatetime;

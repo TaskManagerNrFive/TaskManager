@@ -49,7 +49,7 @@
                         <%= tt.getTitle()  %>
                     </a>
                 </td>
-                <td><%= tt.getDueDatetime()  %></td>
+                <td><%= tt.getDueDateTimeFormated()  %></td>
                 <td><%= tt.getTaskType()  %></td>
                 <td><%= tt.getUserId()  %></td>
                 <td>
