@@ -18,6 +18,14 @@ public class Task {
     private Date doneDate;
     private Timestamp dueDatetime;
 
+    public int getDoneStatus() {
+        int status = 0;
+        if(doneDate != null) {
+            status = 1;
+        }
+        return status;
+    }
+
     public Timestamp getDueDatetime() {
         return dueDatetime;
     }

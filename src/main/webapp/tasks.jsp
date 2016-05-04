@@ -35,8 +35,8 @@
                 <th>Due date time</th>
                 <th>Done date</th>
                 <th>Type</th>
-                <th>Description</th>
                 <th>User id</th>
+                <th>Status</th>
                 <th>Responsible id</th>
                 <th></th>
                 <th></th>
@@ -53,8 +53,15 @@
                 <td><%= tt.getDueDatetime()  %></td>
                 <td><%= tt.getDoneDate()  %></td>
                 <td><%= tt.getTaskType()  %></td>
-                <td><%= tt.getDescription()  %></td>
                 <td><%= tt.getUserId()  %></td>
+                <td>
+                    <% if(tt.getDoneStatus() == 1) { %>
+                        <span class="label label-info">Done</span>
+                    <% } else { %>
+                        <span class="label label-warning">Not done</span>
+                    <% } %>
+                </td>
+
                 <td><%= tt.getresponsibleId()  %></td>
                 <td>
                     <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">Edit</a>
