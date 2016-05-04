@@ -21,6 +21,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-5">
         <form name="updateTask" method="POST" action="updateTask">
+            <input type="hidden" name="taskId" value="<%= task.getTaskId() %>">
 
             <div class="form-group">
                 <label for="title">Title</label>

@@ -16,6 +16,34 @@ import java.util.List;
 public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
     @Override
+    public void update(Task task) throws DBException {
+        if (task == null) {
+            return;
+        }
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update tasks set Title = ?, Description = ?, DueDatetime = ?, DoneDate = ?" +
+                            "where TaskID = ?");
+            preparedStatement.setString(1, task.getTitle());
+            preparedStatement.setString(2, task.getDescription());
+            preparedStatement.setTimestamp(3, task.getDueDatetime());
+            preparedStatement.setDate(4, task.getDoneDate());
+            preparedStatement.setInt(5, (int) task.getTaskId());
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute TaskDAOImpl.update()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+
+    @Override
     public void create(Task task) throws DBException {
         if (task == null) {
             return;
@@ -31,14 +59,10 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setTimestamp(1, task.getDueDatetime());
             preparedStatement.setDate(2, task.getDoneDate());
 
-//            preparedStatement.setString(1, "2016-05-01 00:00:00");
-//            preparedStatement.setString(2, "2016-05-01");
             preparedStatement.setString(3, task.getTitle());
             preparedStatement.setString(4, task.getDescription());
-//
             preparedStatement.setInt(5, (int) 1);
             preparedStatement.setInt(6, (int) 1);
-//            preparedStatement.setString(7, task.getTaskType());
             preparedStatement.setString(7, "");
 
             preparedStatement.executeUpdate();

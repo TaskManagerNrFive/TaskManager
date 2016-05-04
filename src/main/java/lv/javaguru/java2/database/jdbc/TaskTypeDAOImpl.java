@@ -29,10 +29,11 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update task_types set Name = ?" +
+                    .prepareStatement("update task_types set Name = ?, Description = ?" +
                             "where TaskTypeID = ?");
             preparedStatement.setString(1, taskType.getName());
-            preparedStatement.setInt(2, (int) taskType.getTaskTypeID());
+            preparedStatement.setString(2, taskType.getDescription());
+            preparedStatement.setInt(3, (int) taskType.getTaskTypeID());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskTypeDAOImpl.update()");
