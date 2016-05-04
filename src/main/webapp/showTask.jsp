@@ -22,8 +22,8 @@
     <div class="col-md-10">
 
         <h1>Task</h1>
-
         <% Task task = (Task) request.getAttribute("data"); %>
+        <a href="/java2/editTask?taskId=<%= task.getTaskId()  %>" class="btn btn-default" role="button">Edit</a>
 
         <table class="table">
             <thead>
@@ -35,7 +35,7 @@
                 <th>Description</th>
                 <th>User id</th>
                 <th>Responsible id</th>
-                <th>Id</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
