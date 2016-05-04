@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by andrew on 4/30/16.
@@ -25,6 +26,17 @@ public class Task {
         }
         return status;
     }
+
+    public String getDoneDateFormated() {
+        String formatedDate;
+        if(doneDate != null) {
+            formatedDate = new SimpleDateFormat("dd.MM.yyyy").format(doneDate);
+        } else {
+            formatedDate = "nothing";
+        }
+        return formatedDate;
+    }
+
 
     public Timestamp getDueDatetime() {
         return dueDatetime;
