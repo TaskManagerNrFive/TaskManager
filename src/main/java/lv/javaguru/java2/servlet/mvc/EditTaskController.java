@@ -2,6 +2,7 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class EditTaskController implements MVCController {
 
+    @Autowired
     @Qualifier("JDBC_TaskDAO")
     private TaskDAO taskDAO;
 
@@ -25,10 +27,10 @@ public class EditTaskController implements MVCController {
             Task task = null;
 
             task = taskDAO.getById(taskId);
-            mvcModel = new MVCModel("/newTaskForm.jsp", task);
+            mvcModel = new MVCModel("/editTaskForm.jsp", task);
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/newTaskTypeForm.jsp", "Save error has occured, try later.");
+            mvcModel = new MVCModel("/editTaskForm.jsp", "Save error has occured, try later.");
         }
         return mvcModel;
     }
