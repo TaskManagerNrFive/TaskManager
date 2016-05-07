@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.Map" %>
+<%@ page import="lv.javaguru.java2.domain.TaskType" %>
+<%@ page import="lv.javaguru.java2.domain.User" %><%--
 
   Created by IntelliJ IDEA.
   User: andrew
@@ -14,12 +16,9 @@
 <body>
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
-
-
-<%
-    String formName = request.getParameter("name");
-    if (formName == null) formName = "";
-%>
+<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
+<% List<TaskType> taskTypes = (List<TaskType>) dataList.get(0);  %>
+<% List<User> allResponsibles = (List<User>) dataList.get(1);  %>
 
 <br>
 <div class="row">
@@ -44,6 +43,25 @@
                 <label for="doneDate">Done date</label>
                 <input type="text" id="doneDate" name="doneDate" size="40" value="" class="form-control datepicker">
             </div>
+
+            <div class="form-group">
+                <label for="taskType">Task types</label>
+                <select id="taskType" name="taskType" class="form-control">
+                    <% for(TaskType tt:taskTypes ) { %>
+                        <option value="<%= tt.getName()  %>"><%= tt.getName() %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="responsibleId">Responsible</label>
+                <select id="responsibleId" name="responsibleId" class="form-control">
+                    <% for(User uu:allResponsibles ) { %>
+                        <option value="<%= uu.getUserId()  %>"><%= uu.getFullName() %></option>
+                    <% } %>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>

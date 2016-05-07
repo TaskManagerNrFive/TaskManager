@@ -1,4 +1,7 @@
-<%@ page import="lv.javaguru.java2.domain.Task" %><%--
+<%@ page import="lv.javaguru.java2.domain.Task" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="lv.javaguru.java2.domain.TaskType" %>
+<%@ page import="lv.javaguru.java2.domain.User" %><%--
 
   Created by IntelliJ IDEA.
   User: andrew
@@ -14,9 +17,10 @@
 <body>
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
-<% Task task = (Task) request.getAttribute("data"); %>
-
-
+<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
+<% Task task = (Task) dataList.get(0);%>
+<% List<TaskType> taskTypes = (List<TaskType>) dataList.get(1);  %>
+<% List<User> allResponsibles = (List<User>) dataList.get(2);  %>
 
 <br>
 <div class="row">
@@ -38,10 +42,38 @@
                 <label for="dueDateTime">Due date and time</label>
                 <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="<%= task.getDueDatetime()  %>" class="form-control">
             </div>
+
             <div class="form-group">
                 <label for="doneDate">Done date</label>
                 <input type="text" id="doneDate" name="doneDate" size="40" value="<%= task.getDoneDate()  %>" class="form-control datepicker">
             </div>
+
+            <div class="form-group">
+                <label for="taskType">Task types</label>
+                <select id="taskType" name="taskType" class="form-control">
+                    <% for(TaskType tt:taskTypes ) { %>
+                        <% if(tt.getName().equals(task.getTaskType())) { %>
+                            <option selected="selected" value="<%= tt.getName()  %>" ><%= tt.getName() %></option>
+                        <% } else { %>
+                            <option value="<%= tt.getName()  %>"><%= tt.getName() %></option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="responsibleId">Responsible</label>
+                <select id="responsibleId" name="responsibleId" class="form-control">
+                    <% for(User uu:allResponsibles ) { %>
+                        <% if(uu.getUserId() == task.getUserId()) { %>
+                            <option value="<%= uu.getUserId()  %>" selected="selected"><%= uu.getFullName() %></option>
+                        <% } else { %>
+                            <option value="<%= uu.getUserId()  %>"><%= uu.getFullName() %></option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
