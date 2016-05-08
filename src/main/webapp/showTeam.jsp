@@ -14,10 +14,13 @@
 <body>
 
 <% request.setAttribute("currentMenuID", 3); %>
-<%@ include file="/mainMenuInclude.jsp" %>
+<%@ include file="/Header.jsp" %>
 
 <% Team team = (Team) request.getAttribute("data"); %>
 
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <h3>Team</h3>
 <%= team.getName()  %>
 <br>
