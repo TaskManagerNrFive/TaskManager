@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="lv.javaguru.java2.domain.Task" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
     <title>Tasks page</title>
@@ -17,8 +17,12 @@
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
 
+<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
 
-<% List<Task> tasks = (List<Task>) request.getAttribute("data");  %>
+<%Map<String,List> dataMap = dataList.get(0);%>
+<% List<Task> tasks = (List<Task>) dataMap.get("tasks");  %>
+
+<% Map<Long,String> users = dataList.get(1);  %>
 
 <div class="row">
     <div class="col-md-1"></div>
@@ -34,9 +38,9 @@
                 <th>Title</th>
                 <th>Due date time</th>
                 <th>Type</th>
-                <th>User id</th>
+                <th>Creator</th>
                 <th>Done</th>
-                <th>Responsible id</th>
+                <th>Responsible</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -51,7 +55,7 @@
                 </td>
                 <td><%= tt.getDueDateTimeFormated()  %></td>
                 <td><%= tt.getTaskType()  %></td>
-                <td><%= tt.getUserId()  %></td>
+                <td><%= users.get(tt.getUserId())  %></td>
                 <td>
                     <% if(tt.getDoneStatus() == 1) { %>
                         <span class="label label-info"><%= tt.getDoneDateFormated()  %></span>
@@ -59,7 +63,7 @@
                         <span class="label label-warning"><%= tt.getDoneDateFormated()  %></span>
                     <% } %>
                 </td>
-                <td><%= tt.getresponsibleId()  %></td>
+                <td><%= users.get(tt.getresponsibleId())  %></td>
                 <td>
                     <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">Edit</a>
                 </td>

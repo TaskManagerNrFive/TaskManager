@@ -25,13 +25,16 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update tasks set Title = ?, Description = ?, DueDatetime = ?, DoneDate = ?" +
+                    .prepareStatement("update tasks set Title = ?, Description = ?, DueDatetime = ?, DoneDate = ?, ResponsibleId = ?, TaskType = ?" +
                             "where TaskID = ?");
             preparedStatement.setString(1, task.getTitle());
             preparedStatement.setString(2, task.getDescription());
             preparedStatement.setTimestamp(3, task.getDueDatetime());
             preparedStatement.setDate(4, task.getDoneDate());
-            preparedStatement.setInt(5, (int) task.getTaskId());
+            preparedStatement.setInt(5, (int) task.getresponsibleId());
+
+            preparedStatement.setString(6, task.getTaskType());
+            preparedStatement.setInt(7, (int) task.getTaskId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskDAOImpl.update()");
@@ -62,8 +65,8 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setString(3, task.getTitle());
             preparedStatement.setString(4, task.getDescription());
             preparedStatement.setInt(5, (int) 1);
-            preparedStatement.setInt(6, (int) 1);
-            preparedStatement.setString(7, "");
+            preparedStatement.setInt(6, (int) task.getresponsibleId());
+            preparedStatement.setString(7, task.getTaskType());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();

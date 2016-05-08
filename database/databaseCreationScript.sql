@@ -21,7 +21,11 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
 );
 
 INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password)
-VALUES ('UserName', 'UserLastName', '1user@email.com', '12345');
+VALUES ('Andrey', 'Maksimov', 'andrey@email.com', '12345');
+
+
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password)
+VALUES ('Ivan', 'Ivanov', 'ivan@email.com', '12345');
 
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
@@ -64,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
   PRIMARY KEY (`TaskTypeID`)
 );
 
-INSERT INTO task_types (Name) VALUES ("Email");
-INSERT INTO task_types (Name) VALUES ("Phone call");
-INSERT INTO task_types (Name) VALUES ("Meeting");
+INSERT INTO task_types (Name, UserId) VALUES ("Email", 1);
+INSERT INTO task_types (Name, UserId) VALUES ("Phone call", 1);
+INSERT INTO task_types (Name, UserId) VALUES ("Meeting", 1);
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;

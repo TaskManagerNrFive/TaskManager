@@ -87,8 +87,6 @@ public class Task {
         this.responsibleId = responsibleId;
     }
 
-
-
     public long getTaskId() {
         return taskId;
     }

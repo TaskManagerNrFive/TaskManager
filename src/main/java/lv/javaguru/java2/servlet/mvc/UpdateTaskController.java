@@ -30,6 +30,8 @@ public class UpdateTaskController implements MVCController {
             String newDescription = req.getParameter("description");
             Date newDoneDate = Date.valueOf(req.getParameter("doneDate"));
             Timestamp newdueDateTime = Timestamp.valueOf(req.getParameter("dueDateTime"));
+            String newTaskType = req.getParameter("taskType");
+            int newResponsibleId = Integer.parseInt(req.getParameter("responsibleId"));
 
             Task task = null;
 
@@ -39,12 +41,14 @@ public class UpdateTaskController implements MVCController {
             task.setDescription(newDescription);
             task.setDueDatetime(newdueDateTime);
             task.setDoneDate(newDoneDate);
+            task.setTaskType(newTaskType);
+            task.setResponsibleId(newResponsibleId);
 
             taskDAO.update(task);
             /* temporary */ return new MVCModel("/helloWorld.jsp", "Task was updated!");
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/editTaskForm.jsp", "Save error has occured, try later.");
+            mvcModel = new MVCModel("/helloWorld.jsp", "Save error has occured, try later.");
         }
         return mvcModel;
     }

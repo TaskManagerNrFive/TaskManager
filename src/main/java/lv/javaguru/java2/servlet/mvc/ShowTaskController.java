@@ -27,12 +27,10 @@ public class ShowTaskController implements MVCController {
     @Qualifier("JDBC_UserDAO")
     private UserDAO userDAO;
 
-
-    private List<Object> list = new ArrayList<>();
-
     @Override
     public MVCModel processRequest(HttpServletRequest req) {
         MVCModel mvcModel;
+        List<Object> list = new ArrayList<>();
         try {
             int taskId = Integer.parseInt(req.getParameter("taskId"));
             Task task = null;
