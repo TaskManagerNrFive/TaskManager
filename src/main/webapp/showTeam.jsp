@@ -21,16 +21,31 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-<h3>Team</h3>
-<%= team.getName()  %>
-<br>
-<br>
-<%= team.getDescription() %>
-<br>
-<br>
-<a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>">Edit</a>
-<a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">x</a>
-
-
+        <h1>Teams</h1>
+        <a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit</a>
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <%= team.getName()  %>
+                    </td>
+                    <td>
+                        <%= team.getDescription()  %>
+                    </td>
+                    <td>
+                        <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">x</a>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </body>
 </html>

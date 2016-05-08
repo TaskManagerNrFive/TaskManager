@@ -13,31 +13,27 @@
 <body>
 
 <% request.setAttribute("currentMenuID", 3); %>
-<%@ include file="/mainMenuInclude.jsp" %>
+<%@ include file="/Header.jsp" %>
 
-<br>
-<form name="newTeamRegistration" method="POST" action="newTeamRegistration">
-    <table cellspacing="15">
-        <tr>
-            <td colspan="2" align="center"><h2>New team registration.</h2></td>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="name" size="40" required value=""></td>
-        </tr>
-        <tr/>
-        <tr>
-            <td>Description:</td>
-            <td><textarea name="description" cols="40" rows="3"></textarea></td>
-        </tr>
-        <tr/>
-        <tr>
-            <td colspan="2" align="center">
-                  <h3><input value="    Register    " type="submit"></h3>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <h3>Create team</h3>
+        <br>
+        <form name="newTeamRegistration" method="POST" action="newTeamRegistration">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" required value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 
 </body>
 </html>
