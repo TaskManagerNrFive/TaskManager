@@ -60,6 +60,8 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/newTask", getBean(NewTaskController.class));
         urlToControllerMap.put("/createTask", getBean(CreateTaskController.class));
         urlToControllerMap.put("/updateTask", getBean(UpdateTaskController.class));
+        urlToControllerMap.put("/registration", getBean(RegisterPageController.class));
+        urlToControllerMap.put("/registerUser", getBean(RegisterUserController.class));
         incorrectURLController = getBean(IncorrectURLController.class);
     }
 

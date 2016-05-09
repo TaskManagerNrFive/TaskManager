@@ -11,10 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Viktor on 01/07/2014.
- */
-
 @Component("JDBC_UserDAO")
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
@@ -72,6 +68,35 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             throw new DBException(e);
         } finally {
             closeConnection(connection);
+        }
+    }
+
+    @Override
+    public User getByLogin(String login) throws DBException {
+        Connection connect = null;
+
+        try {
+            connect = getConnection();
+            PreparedStatement prepStat = connect.prepareStatement("select * from users where Login = ?");
+            prepStat.setString(1, login);
+            ResultSet rs = prepStat.executeQuery();
+            User user = null;
+            if (rs.next()) {
+                user = new User();
+                user.setUserId(rs.getLong("UserID"));
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setLogin(rs.getString("Login"));
+                user.setPassword(rs.getString("Password"));
+                user.setEmail(rs.getString("Email"));
+            }
+            return user;
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getByLogin()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connect);
         }
     }
 

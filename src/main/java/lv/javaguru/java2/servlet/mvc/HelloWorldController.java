@@ -6,19 +6,14 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
-<<<<<<< HEAD
- * Created by andrew on 3/29/16.
- */
-
 @Component
 public class HelloWorldController implements MVCController {
 
-    @Autowired
-    private UserDAO userDAO;
+//    @Autowired
+//    private UserDAO userDAO;
 
     @Override
     public MVCModel processRequest(HttpServletRequest req) {
-        return new MVCModel("/helloWorld.jsp", "Hello World  MVC");
+        return new MVCModel("/helloWorld.jsp", null);
     }
 }
