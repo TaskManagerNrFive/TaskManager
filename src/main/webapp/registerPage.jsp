@@ -11,7 +11,7 @@
 
 <div class="container">
     <div  class="content registr-wrap">
-        <form name="registration" action="register" method="post">
+        <form name="registration" action="/java2/registerUser" method="post">
             <table>
                 <colgroup>
                     <col class="col1">
