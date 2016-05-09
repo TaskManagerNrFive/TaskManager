@@ -12,8 +12,9 @@
     <div class="col-md-1"></div>
     <div class="col-md-5">
         <h3>Welcome to Task Manager!</h3><br>
-        <h3><%= request.getAttribute("data")  %>
-        </h3>
+        <% if(request.getAttribute("data")!= null) { %>
+            <h3><%= request.getAttribute("data")%></h3>
+        <% } %>
         <form action="/registerUser" method="POST">
             <div class="form-group">
                 <label for="login">Login</label>
