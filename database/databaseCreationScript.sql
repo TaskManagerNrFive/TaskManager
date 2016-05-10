@@ -11,12 +11,13 @@ USE `Java2_test` ;
 DROP TABLE IF EXISTS `Java2_test`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
-  `UserID` INT(11) NOT NULL AUTO_INCREMENT,
-  `FirstName` CHAR(32) NOT NULL,
-  `LastName` CHAR(32) NOT NULL,
-  `TeamId` INT(11),
+  `UserID` BIGINT(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(32) NOT NULL,
+  `LastName` VARCHAR(32) NOT NULL,
+  `TeamId` BIGINT(11),
   `Email` VARCHAR(255) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
+  `Login` VARCHAR(32),
   PRIMARY KEY (`UserID`)
 );
 
