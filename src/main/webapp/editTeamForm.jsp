@@ -13,36 +13,32 @@
 <body>
 
 <% request.setAttribute("currentMenuID", 3); %>
-<%@ include file="/mainMenuInclude.jsp" %>
+<%@ include file="/Header.jsp" %>
 
 <%
 Team team = (Team) request.getAttribute("data");
 %>
 
-<br>
-<form name="updateTeam" method="POST" action="updateTeam">
-    <input type="hidden" name="teamId" value="<%= team.getTeamID() %>">
-    <table cellspacing="15">
-        <tr>
-            <td colspan="2" align="center"><h2>Edit team information.</h2></td>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" name="name" size="40" required value="<%=team.getName()%>"></td>
-        </tr>
-        <tr/>
-        <tr>
-            <td>Description:</td>
-            <td><textarea name="description" cols="40" rows="3"><%=team.getDescription()%></textarea></td>
-        </tr>
-        <tr/>
-        <tr>
-            <td colspan="2" align="center">
-                <h3><input value="    Save    " type="submit"></h3>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <h3>Edit team</h3>
+        <br>
+        <form name="updateTeam" method="POST" action="updateTeam">
+            <input type="hidden" name="teamId" value="<%= team.getTeamID() %>">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" required value="<%=team.getName()%>" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" value="<%=team.getDescription()%>" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -60,6 +61,8 @@ public class MVCFilter implements Filter {
         urlToControllerMap.put("/newTask", getBean(NewTaskController.class));
         urlToControllerMap.put("/createTask", getBean(CreateTaskController.class));
         urlToControllerMap.put("/updateTask", getBean(UpdateTaskController.class));
+        urlToControllerMap.put("/registration", getBean(RegisterPageController.class));
+        urlToControllerMap.put("/registerUser", getBean(RegisterUserController.class));
         incorrectURLController = getBean(IncorrectURLController.class);
     }
 
@@ -83,7 +86,12 @@ public class MVCFilter implements Filter {
 
         }
 
-        MVCModel model = controller.processRequest(req);
+        MVCModel model = null;
+        try {
+            model = controller.processRequest(req);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
 
         req.setAttribute("data", model.getData());
 
