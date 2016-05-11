@@ -5,6 +5,10 @@ import lv.javaguru.java2.domain.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -14,17 +18,15 @@ import java.util.logging.Logger;
 /**
  * Created by andrew on 4/2/16.
  */
-@Component
-public class TaskTypesController implements MVCController {
+@Controller
+public class TaskTypesController {
 
     @Autowired
     @Qualifier("ORM_TaskTypeDAO")
     private TaskTypeDAO taskTypeDAO;
 
-//    private static Logger logger = Logger.getLogger(TaskTypesController.class.getName());
-
-        @Override
-        public MVCModel processRequest(HttpServletRequest req) {
+        @RequestMapping(value = "/taskTypes", method = {RequestMethod.GET})
+        public ModelAndView processGetRequest(HttpServletRequest req) {
             List<TaskType> allTaskTypes = new ArrayList<TaskType>();
 
             try {
@@ -33,7 +35,6 @@ public class TaskTypesController implements MVCController {
             } catch (Exception e) {
                 System.out.println(e);
             }
-//            logger.info("tetsdfsdfs");
-            return new MVCModel("/taskTypes.jsp", allTaskTypes);
+            return new ModelAndView("taskTypes", "data", allTaskTypes);
         }
 }

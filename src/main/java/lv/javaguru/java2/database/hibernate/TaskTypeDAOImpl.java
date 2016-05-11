@@ -60,4 +60,12 @@ public class TaskTypeDAOImpl implements TaskTypeDAO {
                 .addOrder(Order.asc("TaskTypeId")).list();
     }
 
+    public List<TaskType> getAllTaskTypeByUserId(int uderId) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createCriteria(TaskType.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .addOrder(Order.asc("TaskTypeId")).list();
+    }
+
 }

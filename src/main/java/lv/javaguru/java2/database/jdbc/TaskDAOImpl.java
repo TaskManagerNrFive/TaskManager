@@ -163,4 +163,36 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         }
         return tasks;
     }
+
+    @Override
+    public List<Task> getAllTasksByUserId(int userId) throws DBException {
+        List<Task> tasks =  new ArrayList<Task>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tasks where UserId = ?");
+            preparedStatement.setInt(1, userId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Task task = new Task();
+                task.setTitle(resultSet.getString("Title"));
+                task.setTaskId(resultSet.getInt("TaskID"));
+                task.setTaskType(resultSet.getString("TaskType"));
+                task.setDescription(resultSet.getString("Description"));
+                task.setDueDatetime(resultSet.getTimestamp("DueDatetime"));
+                task.setDoneDate(resultSet.getDate("DoneDate"));
+                task.setUserId(resultSet.getInt("UserId"));
+                task.setResponsibleId(resultSet.getInt("ResponsibleId"));
+                tasks.add(task);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting customer list TaskDAOImpl.getList()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return tasks;
+    }
 }

@@ -18,4 +18,6 @@ public interface TaskDAO {
     Task getById(int id) throws DBException;
 
     List<Task> getAll() throws DBException;
+
+    List<Task> getAllTasksByUserId(int userId) throws DBException;
 }

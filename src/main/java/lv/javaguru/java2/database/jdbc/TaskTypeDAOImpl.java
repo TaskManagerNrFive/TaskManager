@@ -18,7 +18,6 @@ import java.util.List;
 @Component("JDBC_TaskTypeDAO")
 public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
 
-
     @Override
     public void update(TaskType taskType) throws DBException {
         if (taskType == null) {
@@ -126,6 +125,32 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from task_types");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                TaskType taskType = new TaskType();
+                taskType.setName(resultSet.getString("Name"));
+                taskType.setTaskTypeId(resultSet.getInt("TaskTypeId"));
+                taskTypes.add(taskType);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting customer list UserDAOImpl.getList()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return taskTypes;
+    }
+
+    @Override
+    public List<TaskType> getAllTaskTypeByUserId(int userId) throws DBException {
+        List<TaskType> taskTypes =  new ArrayList<TaskType>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from task_types where UserId = ?");
+            preparedStatement.setInt(1, userId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
