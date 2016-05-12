@@ -33,7 +33,11 @@
                             <%= tt.getName()  %>
                         </a>
                     </td>
-                    <td><%= tt.getDescription()  %></td>
+                    <td>
+                        <% if(tt.getDescription() != null)  { %>
+                            <%=  tt.getDescription() %>
+                        <%  } %>
+                    </td>
                     <td>
                         <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
