@@ -12,7 +12,7 @@
 <%
     int currentMenuID = (Integer) request.getAttribute("currentMenuID");
     List<MainMenuItem> mainMenuItems = new ArrayList();
-    mainMenuItems.add(new MainMenuItem(1, "Home page", "/java2/hello"));
+    mainMenuItems.add(new MainMenuItem(1, "Home page", "/java2/"));
     mainMenuItems.add(new MainMenuItem(2, "Task types", "/java2/taskTypes"));
     mainMenuItems.add(new MainMenuItem(3, "Teams", "/java2/teams"));
     mainMenuItems.add(new MainMenuItem(4, "Tasks", "/java2/tasks"));
