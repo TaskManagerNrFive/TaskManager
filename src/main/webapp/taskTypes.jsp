@@ -15,7 +15,10 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <h1>Task Types</h1>
-        <a href="/java2/newTaskType" class="btn btn-default">Create new</a>
+        <a href="/java2/newTaskType" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create new
+        </a>
         <table class="table">
             <thead>
                 <th>Name</th>
@@ -32,7 +35,9 @@
                     </td>
                     <td><%= tt.getDescription()  %></td>
                     <td>
-                        <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">x</a>
+                        <a href="/java2/destroyTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
                     </td>
                </tr>
             <% } %>
