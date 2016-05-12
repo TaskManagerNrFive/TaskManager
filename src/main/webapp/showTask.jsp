@@ -30,7 +30,10 @@
     <div class="col-md-10">
 
         <h1>Task</h1>
-        <a href="/java2/editTask?taskId=<%= task.getTaskId()  %>" class="btn btn-default" role="button">Edit</a>
+        <a href="/java2/editTask?taskId=<%= task.getTaskId()  %>" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            Edit
+        </a>
 
         <table class="table">
             <thead>
@@ -55,7 +58,9 @@
                 <td><%= user.getFullName()  %></td>
                 <td><%= responsible.getFullName()  %></td>
                 <td>
-                    <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">x</a>
+                    <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">
+                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
                 </td>
             </tr>
             </tbody>

@@ -22,22 +22,28 @@
     <div class="col-md-10">
 
     <h3>Task type</h3>
+        <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            Edit
+        </a>
     <table class="table">
         <thead>
             <th>Name</th>
             <th>Description</th>
             <th></th>
-            <th></th>
         </thead>
         <tbody>
             <tr>
                 <td><%= taskType.getName()  %></td>
-                <td><%= taskType.getDescription()  %></td>
                 <td>
-                    <a href="/java2/editTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">Edit</a>
+                    <% if(taskType.getDescription() != null)  { %>
+                        <%=  taskType.getDescription() %>
+                    <%  } %>
                 </td>
                 <td>
-                    <a href="/java2/destroyTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">x</a>
+                    <a href="/java2/destroyTaskType?taskTypeId=<%= taskType.getTaskTypeID()  %>">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
                 </td>
             </tr>
         </tbody>
