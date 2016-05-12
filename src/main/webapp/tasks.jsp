@@ -28,7 +28,10 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <h1>Tasks</h1>
-        <a href="/java2/newTask" class="btn btn-default" role="button">Create new</a>
+        <a href="/java2/newTask" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create new
+        </a>
         <br>
         <br>
 
@@ -65,10 +68,14 @@
                 </td>
                 <td><%= users.get(tt.getresponsibleId())  %></td>
                 <td>
-                    <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">Edit</a>
+                    <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
                 </td>
                 <td>
-                    <a href="/java2/destroyTask?taskId=<%= tt.getTaskId()  %>">x</a>
+                    <a href="/java2/destroyTask?taskId=<%= tt.getTaskId()  %>">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
                 </td>
             </tr>
             <% } %>

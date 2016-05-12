@@ -6,6 +6,10 @@ import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -16,8 +20,8 @@ import java.util.Map;
 /**
  * Created by andrew on 4/30/16.
  */
-@Component
-public class TasksController implements MVCController {
+@Controller
+public class TasksController {
 
     @Autowired
     @Qualifier("JDBC_TaskDAO")
@@ -27,8 +31,8 @@ public class TasksController implements MVCController {
     @Qualifier("JDBC_UserDAO")
     private UserDAO userDAO;
 
-    @Override
-    public MVCModel processRequest(HttpServletRequest req) {
+    @RequestMapping(value = "/tasks", method = {RequestMethod.GET})
+    public ModelAndView processRequest(HttpServletRequest req) {
         List<Map> list = new ArrayList<>();
         Map<String,List> tasksMap = new HashMap<>();
         Map<Long,String> usersMap = new HashMap<>();
@@ -54,6 +58,6 @@ public class TasksController implements MVCController {
             System.out.println(e);
         }
 
-        return new MVCModel("/tasks.jsp", list);
+        return new ModelAndView("/tasks", "data", list);
     }
 }
