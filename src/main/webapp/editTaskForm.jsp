@@ -39,8 +39,8 @@
                 <input type="text" id="description" name="description" size="40" required value="<%= task.getDescription()  %>" class="form-control">
             </div>
             <div class="form-group">
-                <label for="dueDateTime">Due date and time</label>
-                <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="<%= task.getDueDatetime()  %>" class="form-control">
+                <label for="dueDateTime">Due date</label>
+                <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="<%= task.getDueDatetime()  %>" class="form-control datepicker">
             </div>
 
             <div class="form-group">

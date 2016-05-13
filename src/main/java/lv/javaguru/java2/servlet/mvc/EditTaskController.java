@@ -9,6 +9,10 @@ import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -19,8 +23,8 @@ import java.util.logging.Logger;
  * Created by andrew on 5/1/16.
  */
 
-@Component
-public class EditTaskController implements MVCController {
+@Controller
+public class EditTaskController {
 
     @Autowired
     @Qualifier("JDBC_TaskDAO")
@@ -34,18 +38,17 @@ public class EditTaskController implements MVCController {
     @Qualifier("JDBC_UserDAO")
     private UserDAO userDAO;
 
-    private static Logger logger = Logger.getLogger(TaskTypesController.class.getName());
-
-    @Override
-    public MVCModel processRequest(HttpServletRequest req) {
-        MVCModel mvcModel;
+//    private static Logger logger = Logger.getLogger(TaskTypesController.class.getName());
+    @RequestMapping(value = "/editTask", method = {RequestMethod.GET})
+    public ModelAndView processRequest(HttpServletRequest req) {
+        ModelAndView mvcModel;
         List<Object> list = new ArrayList<>();
 
         try {
             int taskId = Integer.parseInt(req.getParameter("taskId"));
             Task task = null;
 
-            logger.info(req.getParameter("taskId"));
+//            logger.info(req.getParameter("taskId"));
 
             task = taskDAO.getById(taskId);
             list.add(task);
@@ -58,10 +61,10 @@ public class EditTaskController implements MVCController {
             allResponsibles = userDAO.getAll();
             list.add(allResponsibles);
 
-            mvcModel = new MVCModel("/editTaskForm.jsp", list);
+            mvcModel = new ModelAndView("/editTaskForm", "data", list);
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/editTaskForm.jsp", "Save error has occured, try later.");
+            mvcModel = new ModelAndView("/editTaskForm", "data", "Save error has occured, try later.");
         }
         return mvcModel;
     }
