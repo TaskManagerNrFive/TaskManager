@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="dueDateTime">Due date and time</label>
-                <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="" class="form-control">
+                <input type="text" id="dueDateTime" name="dueDateTime" size="40" value="" class="form-control datepicker">
             </div>
             <div class="form-group">
                 <label for="doneDate">Done date</label>
