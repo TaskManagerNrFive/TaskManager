@@ -86,7 +86,7 @@ public class MVCFilter implements Filter {
 
         }
 
-        MVCModel model = null;
+        ModelAndView model = null;
         try {
             model = controller.processRequest(req);
         } catch (DBException e) {

@@ -25,11 +25,11 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update tasks set Title = ?, Description = ?, DueDatetime = ?, DoneDate = ?, ResponsibleId = ?, TaskType = ?" +
+                    .prepareStatement("update tasks set Title = ?, Description = ?, DueDate = ?, DoneDate = ?, ResponsibleId = ?, TaskType = ?" +
                             "where TaskID = ?");
             preparedStatement.setString(1, task.getTitle());
             preparedStatement.setString(2, task.getDescription());
-            preparedStatement.setTimestamp(3, task.getDueDatetime());
+            preparedStatement.setDate(3, task.getDueDate());
             preparedStatement.setDate(4, task.getDoneDate());
             preparedStatement.setInt(5, (int) task.getresponsibleId());
 
@@ -59,7 +59,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("insert into tasks values (default, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setTimestamp(1, task.getDueDatetime());
+            preparedStatement.setDate(1, task.getDueDate());
             preparedStatement.setDate(2, task.getDoneDate());
 
             preparedStatement.setString(3, task.getTitle());
@@ -119,7 +119,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 task.setTaskId(resultSet.getInt("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
-                task.setDueDatetime(resultSet.getTimestamp("DueDatetime"));
+                task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
                 task.setUserId(resultSet.getInt("UserId"));
                 task.setResponsibleId(resultSet.getInt("ResponsibleId"));            }
@@ -148,7 +148,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 task.setTaskId(resultSet.getInt("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
-                task.setDueDatetime(resultSet.getTimestamp("DueDatetime"));
+                task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
                 task.setUserId(resultSet.getInt("UserId"));
                 task.setResponsibleId(resultSet.getInt("ResponsibleId"));
@@ -180,7 +180,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 task.setTaskId(resultSet.getInt("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
-                task.setDueDatetime(resultSet.getTimestamp("DueDatetime"));
+                task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
                 task.setUserId(resultSet.getInt("UserId"));
                 task.setResponsibleId(resultSet.getInt("ResponsibleId"));

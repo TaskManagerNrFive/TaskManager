@@ -19,9 +19,9 @@ public class UpdateTeamController implements MVCController {
     private TeamDAO teamDAO;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
+    public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
-        MVCModel mvcModel;
+        ModelAndView mvcModel;
         try {
             long teamId = Long.parseLong(req.getParameter("teamId"));
             String newName = req.getParameter("name");
@@ -30,10 +30,10 @@ public class UpdateTeamController implements MVCController {
             team.setName(newName);
             team.setDescription(newDescription);
             teamDAO.update(team);
-            mvcModel = new MVCModel("/helloWorld.jsp", "Record updated!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Record updated!");
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
         }
         return mvcModel;
     }

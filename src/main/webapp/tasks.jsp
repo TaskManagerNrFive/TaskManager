@@ -39,7 +39,7 @@
             <thead>
             <tr>
                 <th>Title</th>
-                <th>Due date time</th>
+                <th>Due date</th>
                 <th>Type</th>
                 <th>Creator</th>
                 <th>Done</th>
@@ -56,7 +56,7 @@
                         <%= tt.getTitle()  %>
                     </a>
                 </td>
-                <td><%= tt.getDueDateTimeFormated()  %></td>
+                <td><%= tt.getDueDateFormated()  %></td>
                 <td><%= tt.getTaskType()  %></td>
                 <td><%= users.get(tt.getUserId())  %></td>
                 <td>

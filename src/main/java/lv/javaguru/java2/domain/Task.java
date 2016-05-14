@@ -17,7 +17,7 @@ public class Task {
     private int responsibleId;
     private String taskType;
     private Date doneDate;
-    private Timestamp dueDatetime;
+    private Date dueDate;
 
     public int getDoneStatus() {
         int status = 0;
@@ -37,22 +37,22 @@ public class Task {
         return formatedDate;
     }
 
-    public String getDueDateTimeFormated() {
+    public String getDueDateFormated() {
         String formatedDateTime;
-        if(dueDatetime != null) {
-            formatedDateTime = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(dueDatetime);
+        if(dueDate != null) {
+            formatedDateTime = new SimpleDateFormat("dd.MM.yyyy").format(dueDate);
         } else {
             formatedDateTime = "Not done";
         }
         return formatedDateTime;
     }
 
-    public Timestamp getDueDatetime() {
-        return dueDatetime;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void setDueDatetime(Timestamp dueDatetime) {
-        this.dueDatetime = dueDatetime;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     public Date getDoneDate() {

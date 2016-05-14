@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 public class IncorrectURLController implements MVCController {
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
-        return new MVCModel("/helloWorld.jsp", "Incorrect Page URL!");
+    public ModelAndView processRequest(HttpServletRequest req) {
+        return new ModelAndView("/helloWorld.jsp", "Incorrect Page URL!");
     }
 
 }

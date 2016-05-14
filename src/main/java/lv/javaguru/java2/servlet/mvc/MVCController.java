@@ -9,5 +9,5 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface MVCController {
 
-    MVCModel processRequest(HttpServletRequest req) throws DBException;
+    ModelAndView processRequest(HttpServletRequest req) throws DBException;
 }

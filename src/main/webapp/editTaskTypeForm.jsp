@@ -1,4 +1,5 @@
-<%@ page import="lv.javaguru.java2.domain.TaskType" %><%--
+<%@ page import="lv.javaguru.java2.domain.TaskType" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: andrew
   Date: 4/17/16
@@ -14,8 +15,9 @@
 <% request.setAttribute("currentMenuID", 2); %>
 <%@ include file="/Header.jsp" %>
 
+<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
+<% TaskType taskType = (TaskType)  dataList.get(0); %>
 
-<% TaskType taskType = (TaskType) request.getAttribute("data"); %>
 
 <div class="row">
     <div class="col-md-1"></div>

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 public class newTeamFormController implements MVCController {
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
-        return new MVCModel("/newTeamRegistration.jsp", null);
+    public ModelAndView processRequest(HttpServletRequest req) {
+        return new ModelAndView("/newTeamRegistration.jsp", null);
     }
 
 }

@@ -20,15 +20,15 @@ public class TeamsController implements MVCController {
     private TeamDAO teamDAO;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
+    public ModelAndView processRequest(HttpServletRequest req) {
 
-        MVCModel mvcModel;
+        ModelAndView mvcModel;
         try {
             List<Team> teams = teamDAO.getAll();
-            mvcModel = new MVCModel("/teams.jsp", teams);
+            mvcModel = new ModelAndView("/teams.jsp", teams);
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
         }
         return mvcModel;
     }

@@ -19,15 +19,15 @@ public class ShowTeamController implements MVCController {
     private TeamDAO teamDAO;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
-        MVCModel mvcModel;
+    public ModelAndView processRequest(HttpServletRequest req) {
+        ModelAndView mvcModel;
         try {
             Long teamID = Long.parseLong(req.getParameter("teamId"));
             Team team = teamDAO.getById(teamID);
-            mvcModel = new MVCModel("/showTeam.jsp", team);
+            mvcModel = new ModelAndView("/showTeam.jsp", team);
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
         }
         return mvcModel;
     }

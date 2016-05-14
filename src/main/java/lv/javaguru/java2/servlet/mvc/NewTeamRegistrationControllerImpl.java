@@ -22,9 +22,9 @@ public class NewTeamRegistrationControllerImpl implements newTeamRegistrationCon
 
     @Override
     @Transactional
-    public MVCModel processRequest(HttpServletRequest req) {
+    public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
-        MVCModel mvcModel;
+        ModelAndView mvcModel;
         try {
             Team team = new Team();
             String newName = req.getParameter("name");
@@ -32,10 +32,10 @@ public class NewTeamRegistrationControllerImpl implements newTeamRegistrationCon
             team.setName(newName);
             team.setDescription(newDescription);
             teamDAO.create(team);
-            mvcModel = new MVCModel("/helloWorld.jsp", "Record created!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Record created!");
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
         }
         return mvcModel;
     }

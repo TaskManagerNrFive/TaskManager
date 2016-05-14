@@ -2,34 +2,35 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.domain.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  * Created by andrew on 5/4/16.
  */
-@Component
-public class UpdateTaskController implements MVCController {
+@Controller
+public class UpdateTaskController {
 
     @Autowired
     @Qualifier("JDBC_TaskDAO")
     private TaskDAO taskDAO;
 
-    public MVCModel processRequest(HttpServletRequest req) {
-        MVCModel mvcModel;
+    @RequestMapping(value = "/updateTask", method = {RequestMethod.POST})
+    public ModelAndView processRequest(HttpServletRequest req) {
         try {
 
             int taskId = Integer.parseInt(req.getParameter("taskId"));
             String newTitle = req.getParameter("title");
             String newDescription = req.getParameter("description");
             Date newDoneDate = Date.valueOf(req.getParameter("doneDate"));
-            Timestamp newdueDateTime = Timestamp.valueOf(req.getParameter("dueDateTime"));
+            Date newdueDate = Date.valueOf(req.getParameter("dueDate"));
             String newTaskType = req.getParameter("taskType");
             int newResponsibleId = Integer.parseInt(req.getParameter("responsibleId"));
 
@@ -39,17 +40,17 @@ public class UpdateTaskController implements MVCController {
 
             task.setTitle(newTitle);
             task.setDescription(newDescription);
-            task.setDueDatetime(newdueDateTime);
+            task.setDueDate(newdueDate);
             task.setDoneDate(newDoneDate);
             task.setTaskType(newTaskType);
             task.setResponsibleId(newResponsibleId);
 
             taskDAO.update(task);
-            /* temporary */ return new MVCModel("/helloWorld.jsp", "Task was updated!");
+
+            return new ModelAndView("/helloWorld", "data", "Task updated!");
         }
         catch (Exception e) {
-            mvcModel = new MVCModel("/helloWorld.jsp", "Save error has occured, try later.");
+           return new ModelAndView("/helloWorld", "data", "Error");
         }
-        return mvcModel;
     }
 }

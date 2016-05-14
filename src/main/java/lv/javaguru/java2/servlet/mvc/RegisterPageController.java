@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 public class RegisterPageController implements MVCController {
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
-        return new MVCModel("/registerPage.jsp", null);
+    public ModelAndView processRequest(HttpServletRequest req) {
+        return new ModelAndView("/registerPage.jsp", null);
     }
 
 

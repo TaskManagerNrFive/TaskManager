@@ -1,6 +1,5 @@
 package lv.javaguru.java2.servlet.mvc;
 
-import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,11 @@ public class RegisterUserController implements MVCController {
     UserService userService;
 
     @Override
-    public MVCModel processRequest(HttpServletRequest req) {
+    public ModelAndView processRequest(HttpServletRequest req) {
         User user = new User();
         user.setFirstName(req.getParameter("firstName"));
         user.setLastName(req.getParameter("lastName"));
         userService.createUser(user);
-        return new MVCModel("/helloWorld.jsp", null);
+        return new ModelAndView("/helloWorld.jsp", null);
     }
 }
