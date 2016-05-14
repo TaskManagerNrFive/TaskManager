@@ -8,26 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="lv.javaguru.java2.domain.Task" %>
 <%@ page import="java.util.*" %>
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <html>
 <head>
-    <title>Tasks page</title>
+    <title>User tasks page</title>
 </head>
 <body>
 
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
 
-<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
+<% List<Map> dataList = (List<Map>) request.getAttribute("data"); %>
 
-<%Map<String,List> dataMap = dataList.get(0);%>
-<% List<Task> tasks = (List<Task>) dataMap.get("tasks");  %>
-
-<% Map<Long,String> users = dataList.get(1);  %>
+<% List<Task> tasks = (List<Task>) dataList.get(0);  %>
+<% User user = (User) dataList.get(1);  %>
 
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h1>Tasks</h1>
+        <h1>Tasks created by user <%= user.getFullName() %></h1>
         <a href="/java2/newTask" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Create new
@@ -41,9 +40,7 @@
                 <th>Title</th>
                 <th>Due date</th>
                 <th>Type</th>
-                <th>Creator</th>
                 <th>Done</th>
-                <th>Responsible</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -59,18 +56,12 @@
                 <td><%= tt.getDueDateFormated()  %></td>
                 <td><%= tt.getTaskType()  %></td>
                 <td>
-                    <a href="/java2/userTasks?userId=<%= tt.getUserId()  %>">
-                        <%= users.get(tt.getUserId())  %>
-                    </a>
-                </td>
-                <td>
                     <% if(tt.getDoneStatus() == 1) { %>
-                        <span class="label label-info"><%= tt.getDoneDateFormated()  %></span>
+                    <span class="label label-info"><%= tt.getDoneDateFormated()  %></span>
                     <% } else { %>
-                        <span class="label label-warning"><%= tt.getDoneDateFormated()  %></span>
+                    <span class="label label-warning"><%= tt.getDoneDateFormated()  %></span>
                     <% } %>
                 </td>
-                <td><%= users.get(tt.getresponsibleId())  %></td>
                 <td>
                     <a href="/java2/editTask?taskId=<%= tt.getTaskId()  %>">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
