@@ -4,12 +4,14 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
     @Autowired
+    @Qualifier("JDBC_UserDAO")
     UserDAO userDAO;
 
     public void createUser(User user) {

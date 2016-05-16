@@ -8,17 +8,24 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * Created by NightStranger on 4/28/2016.
  */
-@Component
-public class UpdateTeamController implements MVCController {
+@Controller
+public class UpdateTeamController {
 
     @Autowired
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
-    @Override
+    @RequestMapping(value = "/updateTeam", method = {RequestMethod.POST})
+    @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
         ModelAndView mvcModel;
@@ -30,10 +37,10 @@ public class UpdateTeamController implements MVCController {
             team.setName(newName);
             team.setDescription(newDescription);
             teamDAO.update(team);
-            mvcModel = new ModelAndView("/helloWorld.jsp", "Record updated!");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Record updated!");
         }
         catch (Exception e) {
-            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Error!");
         }
         return mvcModel;
     }

@@ -5,7 +5,10 @@ import lv.javaguru.java2.domain.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,14 +16,14 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 
-@Component
-public class NewTeamRegistrationControllerImpl implements newTeamRegistrationController {
+@Controller
+public class NewTeamRegistrationControllerImpl {
 
     @Autowired
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
-    @Override
+    @RequestMapping(value = "/newTeamRegistration") // method = {RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
@@ -32,10 +35,10 @@ public class NewTeamRegistrationControllerImpl implements newTeamRegistrationCon
             team.setName(newName);
             team.setDescription(newDescription);
             teamDAO.create(team);
-            mvcModel = new ModelAndView("/helloWorld.jsp", "Record created!");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Record created!");
         }
         catch (Exception e) {
-            mvcModel = new ModelAndView("/helloWorld.jsp", "Error!");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Error!");
         }
         return mvcModel;
     }
