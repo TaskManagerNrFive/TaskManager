@@ -21,12 +21,14 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   PRIMARY KEY (`UserID`)
 );
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password)
-VALUES ('Andrey', 'Maksimov', 'andrey@email.com', '12345');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
+VALUES ('Andrey', 'Maksimov', 1, 'andrey@email.com', '12345');
 
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
+VALUES ('Ivan', 'Ivanov', 2, 'ivan@email.com', '12345');
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, Email, Password)
-VALUES ('Ivan', 'Ivanov', 'ivan@email.com', '12345');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
+VALUES ('Oleg', 'Izvekov', 2, 'oleizv@email.com', '54321');
 
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 

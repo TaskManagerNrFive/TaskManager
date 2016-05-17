@@ -1,4 +1,5 @@
 <%@ page import="lv.javaguru.java2.domain.Team" %>
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: NightStranger
@@ -16,7 +17,10 @@
 <% request.setAttribute("currentMenuID", 3); %>
 <%@ include file="/Header.jsp" %>
 
-<% Team team = (Team) request.getAttribute("data"); %>
+<%
+    Team team = (Team) request.getAttribute("team");
+    List<User> teamUsers = (List<User>) request.getAttribute("teamUsers");
+%>
 
 <div class="row">
     <div class="col-md-1"></div>
@@ -27,6 +31,7 @@
             <thead>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Users</th>
                 <th></th>
             </thead>
             <tbody>
@@ -36,6 +41,22 @@
                     </td>
                     <td>
                         <%= team.getDescription()  %>
+                    </td>
+                    <td>
+                        <%
+                            boolean firstUser = true;
+                            for (User user : teamUsers) {
+                                if (!firstUser) {
+                        %>
+                                    <BR>
+                        <%
+                            }
+                        %>
+                                <%= user.getFullName() %>
+                        <%
+                                firstUser = false;
+                            }
+                        %>
                     </td>
                     <td>
                         <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">x</a>

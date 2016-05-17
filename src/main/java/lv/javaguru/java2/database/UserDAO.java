@@ -21,4 +21,6 @@ public interface UserDAO {
 
     User getByLogin(String login) throws DBException;
 
+    List<User> getByTeamId(Long teamId) throws DBException;
+
 }

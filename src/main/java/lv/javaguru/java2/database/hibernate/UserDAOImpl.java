@@ -54,4 +54,12 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(User.class).list();
     }
+
+    @Override
+    public List<User> getByTeamId(Long teamId) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(User.class).
+                            add(Restrictions.eq("teamId", teamId)).list();
+    }
+
 }

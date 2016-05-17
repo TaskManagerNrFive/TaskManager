@@ -172,4 +172,31 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public List<User> getByTeamId(Long teamId) throws DBException {
+        List<User> users = new ArrayList();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from users where TeamId = ?");
+            preparedStatement.setLong(1, teamId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setFirstName(resultSet.getString("FirstName"));
+                user.setLastName(resultSet.getString("LastName"));
+                users.add(user);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting customer list UserDAOImpl.getByTeamId()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return users;
+    }
+
 }

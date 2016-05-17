@@ -1,7 +1,9 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TeamDAO;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Team;
+import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -23,16 +28,28 @@ public class TeamsController {
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
+    @Autowired
+    @Qualifier("ORM_UserDAO")
+    private UserDAO userDAO;
+
     @RequestMapping(value = "/teams") // method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
 
         ModelAndView mvcModel;
         try {
             List<Team> teams = teamDAO.getAll();
-            mvcModel = new ModelAndView("/teams", "data", teams);
+            Map <Long, List<User>> users = new HashMap();
+            for (Team team: teams) {
+                users.put(team.getTeamID(), userDAO.getByTeamId(team.getTeamID()));
+            }
+            mvcModel = new ModelAndView();
+            mvcModel.setViewName("/teams");
+            mvcModel.addObject("teams", teams).addObject("users", users);
+            // ("/teams", "data", teams);
         }
         catch (Exception e) {
-            mvcModel = new ModelAndView("/helloWorld", "data", "Error!");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Error! " +
+            e.getMessage());
         }
         return mvcModel;
     }
