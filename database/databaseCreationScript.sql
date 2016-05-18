@@ -30,6 +30,9 @@ VALUES ('Ivan', 'Ivanov', 2, 'ivan@email.com', '12345');
 INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
 VALUES ('Oleg', 'Izvekov', 2, 'oleizv@email.com', '54321');
 
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
+VALUES ('Dmitry', 'Volkov', 2, 'dmitry@email.com', '32401');
+
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (

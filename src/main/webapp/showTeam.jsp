@@ -26,7 +26,9 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <h1>Team</h1>
-        <a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit</a>
+        <a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit Info</a>
+        &nbsp; &nbsp; &nbsp;
+        <a href="/java2/editTeamUsers?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit Users</a>
         <table class="table">
             <thead>
                 <th>Name</th>

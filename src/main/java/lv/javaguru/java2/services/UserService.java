@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    @Qualifier("JDBC_UserDAO")
+    @Qualifier("ORM_UserDAO")
     UserDAO userDAO;
 
     public void createUser(User user) {
@@ -32,4 +32,11 @@ public class UserService {
 
         return user.getPassword().equals(passw);
     }
+
+    public void updateTeamId(long userId, long teamId) throws Exception {
+        User user = userDAO.getById(userId);
+        user.setTeamId(teamId);
+        userDAO.update(user);
+    }
+
 }
