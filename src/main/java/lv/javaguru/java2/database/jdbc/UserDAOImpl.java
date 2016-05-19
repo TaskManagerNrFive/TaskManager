@@ -19,7 +19,6 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         if (user == null) {
             return;
         }
-
         Connection connection = null;
 
         try {
@@ -29,13 +28,13 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setInt(3, 1234);
-            preparedStatement.setString(4, "mail");
-            preparedStatement.setString(5, "12345");
-            preparedStatement.setString(6, "wwwww");
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setString(6, user.getLogin());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()){
+            if (rs.next()) {
                 user.setUserId(rs.getLong(1));
             }
         } catch (Throwable e) {
@@ -45,7 +44,6 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         } finally {
             closeConnection(connection);
         }
-
     }
 
     @Override

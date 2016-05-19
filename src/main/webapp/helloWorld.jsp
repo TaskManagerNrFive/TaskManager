@@ -13,7 +13,7 @@
     <div class="col-md-5">
         <h3>Welcome to Task Manager!</h3><br>
         <% if(request.getAttribute("data")!= null) { %>
-            <h3><%= request.getAttribute("data")%></h3>
+        <h3><%= request.getAttribute("data")%></h3>
         <% } %>
         <form action="/registerUser" method="POST">
             <div class="form-group">
