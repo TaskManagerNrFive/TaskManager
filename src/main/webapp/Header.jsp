@@ -39,7 +39,9 @@
                         </ul>
                     <% } else { %>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="navbar-brand" href="/java2">Login</a></li>
+                        <li>
+                            <a href="/java2/registration" class="navbar-brand">Sign up!</a>
+                        </li>
                     </ul>
                     <% } %>
                 </div>

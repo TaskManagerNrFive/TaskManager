@@ -17,5 +17,4 @@
     </div>
     <input type="submit" value="Log In" class="btn btn-default"><br>
     <br>
-    <a href="/java2/registration" class="btn btn-default">Sign up!</a>
 </form>
