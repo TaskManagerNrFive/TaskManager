@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="lv.javaguru.java2.domain.Task" %>
 <%@ page import="java.util.*" %>
+<%@ page import="lv.javaguru.java2.domain.User" %>
 <html>
 <head>
     <title>Tasks page</title>

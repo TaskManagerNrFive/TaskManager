@@ -2,17 +2,17 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  * Created by andrew on 5/1/16.
@@ -38,12 +38,16 @@ public class CreateTaskController {
             Date newdueDate = Date.valueOf(req.getParameter("dueDate"));
             int newResponsibleId = Integer.parseInt(req.getParameter("responsibleId"));
 
+            User user = (User) req.getSession().getAttribute("User");
+            int userId = new BigDecimal(user.getUserId()).intValueExact();
+
             task.setTitle(newTitle);
             task.setTaskType(newTaskType);
             task.setDescription(newDescription);
             task.setDueDate(newdueDate);
             task.setDoneDate(newDoneDate);
             task.setResponsibleId(newResponsibleId);
+            task.setUserId(userId);
 
             taskDAO.create(task);
             mvcModel = new ModelAndView("/helloWorld", "data", "Task created");

@@ -102,7 +102,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
                     connection.prepareStatement("insert into task_types values (default, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, taskType.getName());
             preparedStatement.setString(2, taskType.getDescription());
-            preparedStatement.setString(3, "0");
+            preparedStatement.setInt(3, taskType.getUserId());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();

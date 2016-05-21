@@ -41,6 +41,10 @@ public class TaskType {
         this.name = name;
     }
 
+    public void setUserId(int userId) { this.userId = userId; }
+
+    public int getUserId() { return userId; }
+
     public String getDescription() {
         return description;
     }

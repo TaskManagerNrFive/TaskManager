@@ -64,7 +64,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
             preparedStatement.setString(3, task.getTitle());
             preparedStatement.setString(4, task.getDescription());
-            preparedStatement.setInt(5, (int) 1);
+            preparedStatement.setInt(5, (int) task.getUserId());
             preparedStatement.setInt(6, (int) task.getresponsibleId());
             preparedStatement.setString(7, task.getTaskType());
 

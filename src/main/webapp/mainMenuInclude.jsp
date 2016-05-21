@@ -22,8 +22,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <ul class="nav nav-tabs">
-            <%
-                for (MainMenuItem mainMenuItem : mainMenuItems) { %>
+            <% for (MainMenuItem mainMenuItem : mainMenuItems) { %>
                     <% if (mainMenuItem.getId() != currentMenuID) { %>
                         <li role="presentation">
                             <a href="<%= mainMenuItem.getUrl() %>" role="button"> <%= mainMenuItem.getName() %> </a>
@@ -36,5 +35,6 @@
             <% } %>
         </ul>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-1">
+    </div>
 </div>

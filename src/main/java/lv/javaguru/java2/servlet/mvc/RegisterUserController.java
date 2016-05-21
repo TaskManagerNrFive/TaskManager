@@ -18,7 +18,7 @@ public class RegisterUserController {
     @Qualifier("ORM_UserDAO")
     private UserDAO userDAO;
 
-    @Transactional
+//    @Transactional
     @RequestMapping(value = "/registerUser", method = {RequestMethod.POST})
     public org.springframework.web.servlet.ModelAndView processRequest(HttpServletRequest req) {
         org.springframework.web.servlet.ModelAndView mvcModel;
