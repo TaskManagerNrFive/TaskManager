@@ -9,6 +9,8 @@
 <%@ page import="lv.javaguru.java2.domain.Task" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="lv.javaguru.java2.domain.User" %>
+<%@ page import="lv.javaguru.java2.domain.TaskComment" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,7 +22,13 @@
 <% Task task = (Task) dataList.get(0);%>
 <% User user = (User) dataList.get(1);%>
 <% User responsible = (User) dataList.get(2);%>
-
+<%
+    List <TaskComment> taskComments =
+            (List <TaskComment>) request.getAttribute("taskComments");
+    Map <Long, User> taskCommentsUsers =
+            (Map <Long, User>) request.getAttribute("taskCommentsUsers");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, dd MMM YYYY HH:mm");
+%>
 
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
@@ -68,5 +76,45 @@
     </div>
     <div class="col-md-1"></div>
 </div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <form name="createTaskComment" method="POST" action="createTaskComment">
+            <input type="hidden" name="taskId" value="<%= task.getTaskId() %>">
+            <div class="form-group">
+                <textarea name="text" style="resize:none" rows="3" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Add Comment</button>
+        </form>
+        <br>
+        <table class="table">
+            <% for (TaskComment taskComment : taskComments) { %>
+                    <tr>
+                        <td>
+                            <p class="text-primary">
+                                <%= simpleDateFormat.format(taskComment.getCreateTimeStamp())%>
+                            </p>
+                            <p style="font-weight:bold" class="text-primary">
+                                <%= taskCommentsUsers.get(taskComment.getUserID())
+                                                       .getFullName()%>
+                            </p>
+                            <p> <%= taskComment.getText()
+                                    .replaceAll("\r\n", "<BR>")
+                                    .replaceAll("\r", "<BR>")
+                                    .replaceAll("\n", "<BR>")
+                                    .replaceAll(" ", "&nbsp;") %>
+                            </p>
+                            <br>
+                        </td>
+                    </tr>
+            <% } %>
+        </table>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
 </body>
 </html>

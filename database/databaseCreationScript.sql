@@ -21,17 +21,17 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
   PRIMARY KEY (`UserID`)
 );
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
-VALUES ('Andrey', 'Maksimov', 1, 'andrey@email.com', '12345');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Login, Password)
+VALUES ('Andrey', 'Maksimov', 1, 'andrey@email.com', 'andmak', '12345');
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
-VALUES ('Ivan', 'Ivanov', 2, 'ivan@email.com', '12345');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Login, Password)
+VALUES ('Ivan', 'Ivanov', 2, 'ivan@email.com', 'ivaiva', '12345');
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
-VALUES ('Oleg', 'Izvekov', 2, 'oleizv@email.com', '54321');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Login, Password)
+VALUES ('Oleg', 'Izvekov', 2, 'oleizv@email.com', 'oleizv', '12345');
 
-INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Password)
-VALUES ('Dmitry', 'Volkov', 2, 'dmitry@email.com', '32401');
+INSERT INTO `Java2_test`.`users` (FirstName, LastName, TeamId, Email, Login, Password)
+VALUES ('Dmitry', 'Volkov', 2, 'dmitry@email.com', 'dmivol', '32401');
 
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
@@ -77,6 +77,22 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
 INSERT INTO task_types (Name, UserId) VALUES ("Email", 1);
 INSERT INTO task_types (Name, UserId) VALUES ("Phone call", 1);
 INSERT INTO task_types (Name, UserId) VALUES ("Meeting", 1);
+
+DROP TABLE IF EXISTS `Java2_test`.`task_comments`;
+
+CREATE TABLE IF NOT EXISTS `Java2_test`.`task_comments` (
+  `CommentID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Text` TEXT,
+  `CreateTimeStamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `TaskID` INT(11) NOT NULL,
+  `UserID` BIGINT(11) NOT NULL,
+  PRIMARY KEY (`CommentID`)
+);
+
+INSERT INTO `Java2_test`.`task_comments` (Text, TaskID, UserID)
+    VALUES ("Great task!\nAwesome!", 1, 2);
+INSERT INTO `Java2_test`.`task_comments` (Text, TaskID, UserID)
+    VALUES ("Test test Test test Test test Test test1! \n         Test test Test test Test test2!", 1, 3);
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;

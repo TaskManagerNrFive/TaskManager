@@ -1,8 +1,10 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.database.TaskCommentDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.domain.TaskComment;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +33,10 @@ public class ShowTaskController {
     @Autowired
     @Qualifier("JDBC_UserDAO")
     private UserDAO userDAO;
+
+    @Autowired
+    @Qualifier("ORM_TaskCommentDAO")
+    private TaskCommentDAO taskCommentDAO;
 
     @RequestMapping(value = "/showTask", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
@@ -50,10 +57,22 @@ public class ShowTaskController {
             responsbile = userDAO.getById(task.getresponsibleId());
             list.add(responsbile);
 
+            List<TaskComment> taskComments = taskCommentDAO.getByTaskID(taskId);
+
+            Map<Long, User> taskCommentsUsers = new HashMap();
+            for (TaskComment taskComment : taskComments) {
+                User taskCommentsUser = userDAO.getById(taskComment.getUserID());
+                taskCommentsUsers.put(taskCommentsUser.getUserId(), taskCommentsUser);
+            }
+
             mvcModel = new ModelAndView("/showTask", "data",  list);
+            mvcModel.addObject("taskComments", taskComments);
+            mvcModel.addObject("taskCommentsUsers", taskCommentsUsers);
+
         }
         catch (Exception e) {
             mvcModel = new ModelAndView("/newTaskTypeForm", "data", "Save error has occured, try later.");
+            // mvcModel = new ModelAndView("/helloWorld", "data", e.getMessage());
         }
         return mvcModel;
     }
