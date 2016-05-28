@@ -35,71 +35,82 @@
 
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-5">
 
-        <h1>Task</h1>
+        <h3>Task</h3>
         <a href="/java2/editTask?taskId=<%= task.getTaskId()  %>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             Edit
         </a>
+        <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>" class="btn btn-danger" role="button">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            Destroy
+        </a>
+        <br>
+        <br>
 
         <table class="table">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Due date</th>
-                <th>Done date</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>User name</th>
-                <th>Responsible id</th>
-                <th></th>
-            </tr>
-            </thead>
             <tbody>
-            <tr>
-                <td><%= task.getTitle()  %></td>
-                <td><%= task.getDueDateFormated()  %></td>
-                <td><%= task.getDoneDateFormated()  %></td>
-                <td><%= task.getTaskType()  %></td>
-                <td><%= task.getDescription()  %></td>
-                <td><%= user.getFullName()  %></td>
-                <td><%= responsible.getFullName()  %></td>
-                <td>
-                    <a href="/java2/destroyTask?taskId=<%= task.getTaskId()  %>">
-                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <th>Title</th>
+                    <td><%= task.getTitle()  %></td>
+                </tr>
+                <tr>
+                    <th>Due date</th>
+                    <td><%= task.getDueDateFormated()  %></td>
+                </tr>
+                <tr>
+                    <th>Done date</th>
+                    <td><%= task.getDoneDateFormated()  %></td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td><%= task.getTaskType()  %></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td><%= task.getDescription()  %></td>
+                </tr>
+                <tr>
+                    <th>User name</th>
+                    <td><%= user.getFullName()  %></td>
+                </tr>
+                <tr>
+                    <th>Responsible name</th>
+                    <td><%= responsible.getFullName()  %></td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-md-1"></div>
-</div>
-
-<br>
-
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-7">
-        <form name="createTaskComment" method="POST" action="createTaskComment">
-            <input type="hidden" name="taskId" value="<%= task.getTaskId() %>">
-            <div class="form-group">
-                <textarea name="text" style="resize:none" rows="3" class="form-control" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-default">Add Comment</button>
-        </form>
+    <div class="col-md-5">
+        <h3>Comments</h3>
+        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new
+        </a>
         <br>
+        <br>
+        <div class="collapse" id="collapseExample">
+            <form name="createTaskComment" method="POST" action="createTaskComment">
+                <input type="hidden" name="taskId" value="<%= task.getTaskId() %>">
+                <div class="form-group">
+                    <textarea name="text" style="resize:none" rows="3" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Save</button>
+            </form>
+        </div>
+
         <table class="table">
             <% for (TaskComment taskComment : taskComments) { %>
                     <tr>
                         <td>
                             <p class="text-primary">
                                 <%= simpleDateFormat.format(taskComment.getCreateTimeStamp())%>
-                            </p>
-                            <p style="font-weight:bold" class="text-primary">
-                                <%= taskCommentsUsers.get(taskComment.getUserID())
-                                                       .getFullName()%>
+                                -
+                                <strong>
+                                    <%= taskCommentsUsers.get(taskComment.getUserID())
+                                                           .getFullName()%>
+                                </strong>
                             </p>
                             <p> <%= taskComment.getText()
                                     .replaceAll("\r\n", "<BR>")
@@ -113,7 +124,7 @@
             <% } %>
         </table>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-1"></div>
 </div>
 
 </body>
