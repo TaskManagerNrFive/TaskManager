@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-5">
+    <div class="col-md-4">
 
         <br>
         <% if(request.getAttribute("data")!= null) { %>
@@ -27,8 +27,9 @@
             <%@ include file="/loginForm.jsp" %>
         <% } %>
 
-
-        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-2">
+        <img src="http://loremflickr.com/320/240">
     </div>
 </div>
 </body>
