@@ -26,9 +26,15 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <h1>Team</h1>
-        <a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit Info</a>
+        <a href="/java2/editTeam?teamId=<%= team.getTeamID()  %>" class="btn btn-default">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            Edit Info
+        </a>
         &nbsp; &nbsp; &nbsp;
-        <a href="/java2/editTeamUsers?teamId=<%= team.getTeamID()  %>" class="btn btn-default">Edit Users</a>
+        <a href="/java2/editTeamUsers?teamId=<%= team.getTeamID()  %>" class="btn btn-default">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            Edit Users
+        </a>
         <table class="table">
             <thead>
                 <th>Name</th>
@@ -61,7 +67,15 @@
                         %>
                     </td>
                     <td>
-                        <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">x</a>
+                        <a href="/java2/tasks?filterMode=2&filterUserId=0&filterTeamId=<%= team.getTeamID() %>&filterStatus=1&filterTitle="
+                           role="button">
+                            <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+                            Tasks
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>

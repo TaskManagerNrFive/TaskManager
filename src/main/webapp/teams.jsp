@@ -21,8 +21,11 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h1>Teams</h1>
-        <a href="/java2/newTeam" class="btn btn-default">Create new</a>
+        <h3>Teams</h3>
+        <a href="/java2/newTeam" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create new
+        </a>
         <table class="table">
             <thead>
                 <th>Name</th>
@@ -59,7 +62,16 @@
                         %>
                     </td>
                     <td>
-                        <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">x</a>
+                        <a href="/java2/tasks?filterMode=2&filterUserId=0&filterTeamId=<%= team.getTeamID() %>&filterStatus=1&filterTitle="
+                        role="button">
+                            <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+                            Tasks
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/java2/deleteTeam?teamId=<%= team.getTeamID()  %>">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
                         </a>
                     </td>
                 </tr>

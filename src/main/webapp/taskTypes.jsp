@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h1>Task Types</h1>
+        <h3>Task Types</h3>
         <a href="/java2/newTaskType" class="btn btn-default">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Create new

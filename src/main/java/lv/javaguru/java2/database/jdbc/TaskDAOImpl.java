@@ -195,4 +195,11 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         }
         return tasks;
     }
+
+    @Override
+    public List<Task> getFilteredList(long userId, long teamId,
+                                      long status, String title) throws DBException {
+        throw new DBException("Error!");
+    }
+
 }

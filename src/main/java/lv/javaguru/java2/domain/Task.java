@@ -1,6 +1,7 @@
 package lv.javaguru.java2.domain;
 
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -8,16 +9,40 @@ import java.text.SimpleDateFormat;
 /**
  * Created by andrew on 4/30/16.
  */
+
+@Entity
+@Table(name = "tasks")
 public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "TaskID", nullable = false)
     private int taskId;
+
+    @Column(name = "Title")
     private String title;
+
+    @Column(name = "Description", columnDefinition = "TEXT")
     private String description;
+
+    @Column(name = "UserId")
     private int userId;
+
+    @Column(name = "ResponsibleId")
     private int responsibleId;
+
+    @Column(name = "TaskType", columnDefinition = "CHAR")
     private String taskType;
+
+    @Column(name = "DoneDate")
     private Date doneDate;
+
+    @Column(name = "DueDate")
     private Date dueDate;
+
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="UserId", insertable = false, updatable = false)
+    private User user;
 
     public int getDoneStatus() {
         int status = 0;

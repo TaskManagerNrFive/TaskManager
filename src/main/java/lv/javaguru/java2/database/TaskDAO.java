@@ -20,4 +20,8 @@ public interface TaskDAO {
     List<Task> getAll() throws DBException;
 
     List<Task> getAllTasksByUserId(int userId) throws DBException;
+
+    List<Task> getFilteredList(long userId, long teamId,
+                               long status, String title) throws DBException;
+
 }

@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-5">
-        <h1>Team Users</h1>
+        <h3>Team Users</h3>
         <h3> <%= team.getName() %> </h3>
         <br>
         <br>
@@ -42,7 +42,7 @@
                     <td>
                         <a
                           href="/java2/deleteTeamUser?teamId=<%= team.getTeamID()%>&userId=<%= user.getUserId()%>">
-                            x
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
