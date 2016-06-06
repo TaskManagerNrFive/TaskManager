@@ -3,6 +3,8 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
+import lv.javaguru.java2.services.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,9 +26,18 @@ public class CreateTaskController {
     @Qualifier("JDBC_TaskDAO")
     private TaskDAO taskDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/createTask", method = {RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         try {
             Task task = new Task();
@@ -34,11 +45,12 @@ public class CreateTaskController {
             String newTitle = req.getParameter("title");
             String newDescription = req.getParameter("description");
             String newTaskType = req.getParameter("taskType");
-            Date newDoneDate = Date.valueOf(req.getParameter("doneDate"));
-            Date newdueDate = Date.valueOf(req.getParameter("dueDate"));
+
+            Date newDoneDate = Utilities.getDateFromString(req.getParameter("doneDate"));
+            Date newdueDate = Utilities.getDateFromString(req.getParameter("dueDate"));
             int newResponsibleId = Integer.parseInt(req.getParameter("responsibleId"));
 
-            User user = (User) req.getSession().getAttribute("User");
+            User user = sessionUser;
             int userId = new BigDecimal(user.getUserId()).intValueExact();
 
             task.setTitle(newTitle);
@@ -53,7 +65,8 @@ public class CreateTaskController {
             mvcModel = new ModelAndView("/helloWorld", "data", "Task created");
         }
         catch (Exception e) {
-            mvcModel = new ModelAndView("/helloWorld", "data", "Error made");
+            mvcModel = new ModelAndView("/helloWorld", "data", "Error made "
+                                        + e.getMessage());
         }
         return mvcModel;
     }

@@ -40,12 +40,12 @@
             </div>
             <div class="form-group">
                 <label for="dueDate">Due date</label>
-                <input type="text" id="dueDate" name="dueDate" size="40" value="<%= task.getDueDate()  %>" class="form-control datepicker">
+                <input type="text" id="dueDate" name="dueDate" size="40" value="<%= task.getDueDate() != null ? task.getDueDate().toString() : "" %>" class="form-control datepicker">
             </div>
 
             <div class="form-group">
                 <label for="doneDate">Done date</label>
-                <input type="text" id="doneDate" name="doneDate" size="40" value="<%= task.getDoneDate()  %>" class="form-control datepicker">
+                <input type="text" id="doneDate" name="doneDate" size="40" value="<%= task.getDoneDate() != null ? task.getDoneDate().toString() : "" %>" class="form-control datepicker">
             </div>
 
             <div class="form-group">

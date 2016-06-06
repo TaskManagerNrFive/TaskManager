@@ -2,6 +2,8 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.*;
 import lv.javaguru.java2.domain.TaskType;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -25,8 +27,17 @@ public class TaskTypesController {
     @Qualifier("ORM_TaskTypeDAO")
     private TaskTypeDAO taskTypeDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
         @RequestMapping(value = "/taskTypes", method = {RequestMethod.GET})
         public ModelAndView processGetRequest(HttpServletRequest req) {
+
+            User sessionUser = accountManager.getUserFromSession(req.getSession());
+            if (sessionUser == null) {
+                return new ModelAndView("/redirect", "data", "");
+            }
+
             List<TaskType> allTaskTypes = new ArrayList<TaskType>();
 
             try {

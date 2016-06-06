@@ -2,6 +2,8 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.*;
 import lv.javaguru.java2.domain.Team;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -23,9 +25,18 @@ public class NewTeamRegistrationControllerImpl {
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/newTeamRegistration") // method = {RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         /* need to check form params here too */
         ModelAndView mvcModel;
         try {

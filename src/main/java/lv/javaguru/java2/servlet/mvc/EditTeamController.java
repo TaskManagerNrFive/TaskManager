@@ -2,6 +2,8 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TeamDAO;
 import lv.javaguru.java2.domain.Team;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -21,8 +23,17 @@ public class EditTeamController {
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/editTeam") // method = {RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         try {
             long teamId = Long.parseLong(req.getParameter("teamId"));

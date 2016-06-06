@@ -3,6 +3,7 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.TaskCommentDAO;
 import lv.javaguru.java2.domain.TaskComment;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,17 @@ public class CreateTaskCommentController {
     @Qualifier("ORM_TaskCommentDAO")
     private TaskCommentDAO taskCommentDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/createTaskComment") // method = {RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
 
         ModelAndView mvcModel;
         try {
@@ -35,7 +44,7 @@ public class CreateTaskCommentController {
 
             String text = req.getParameter("text");
             int taskID = Integer.parseInt(req.getParameter("taskId"));
-            User sessionUser = (User) req.getSession().getAttribute("User");
+
             long userID = sessionUser.getUserId();
 
             taskComment.setText(text);

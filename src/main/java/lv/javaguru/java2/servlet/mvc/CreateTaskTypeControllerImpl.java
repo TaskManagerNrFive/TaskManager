@@ -3,6 +3,7 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.TaskTypeDAO;
 import lv.javaguru.java2.domain.TaskType;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -25,16 +26,25 @@ public class CreateTaskTypeControllerImpl  {
     @Qualifier("ORM_TaskTypeDAO")
     private TaskTypeDAO taskTypeDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @Transactional
     @RequestMapping(value = "/createTaskType", method = {RequestMethod.POST})
     public ModelAndView processRequest(HttpServletRequest req) {
         /* need to check form params here too */
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         try {
             TaskType taskType = new TaskType();
             String newName = req.getParameter("name");
             String newDescription = req.getParameter("description");
-            User user = (User) req.getSession().getAttribute("User");
+            User user = sessionUser;
             int userId = new BigDecimal(user.getUserId()).intValueExact();
 
             taskType.setName(newName);

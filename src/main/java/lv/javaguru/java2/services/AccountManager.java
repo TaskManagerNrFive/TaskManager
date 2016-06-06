@@ -43,5 +43,17 @@ public class AccountManager {
     public void logOffUserFromSession(HttpSession session) {
         session.removeAttribute("User");
     }
+
+    public User getUserFromSession(HttpSession session) {
+        User user;
+        try {
+            user = (User) session.getAttribute("User");
+        }
+        catch (Exception e) {
+            user = null;
+        }
+        return user;
+    }
+
 }
 

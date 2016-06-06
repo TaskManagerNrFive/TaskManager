@@ -67,7 +67,7 @@ public class Task {
         if(dueDate != null) {
             formatedDateTime = new SimpleDateFormat("dd.MM.yyyy").format(dueDate);
         } else {
-            formatedDateTime = "Not done";
+            formatedDateTime = "No due date";
         }
         return formatedDateTime;
     }

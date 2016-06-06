@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,10 +9,10 @@ import java.util.stream.Collectors;
  */
 public class AllTasksFilterState {
 
-    long userId;
-    long teamId;
-    long status;
-    String title;
+    private long userId;
+    private long teamId;
+    private long status;
+    private String title;
 
     public String getTitle() {
         return title;
@@ -57,12 +58,29 @@ public class AllTasksFilterState {
         return str.trim();
     }
 
+    public String formStringUser(List<FilterItem> statuses) {
+        String str = "";
+        if (status != 0) str = str + "Status: " + getValueFromList(status, statuses) + "     ";
+        if (title.length() > 0) {
+            str = str + "Title: " + title + "     ";
+        }
+        return str.trim();
+    }
+
     public String getValueFromList(long id, List<FilterItem> list) {
         return list.stream()
                 .filter(item -> item.getId() == id)
                 .collect(Collectors.toList())
                 .get(0)
                 .getName();
+    }
+
+    public static List<FilterItem> formStatusFilterList() {
+        List<FilterItem> currlist = new ArrayList();
+        currlist.add(new FilterItem(0L, "--- all ---"));
+        currlist.add(new FilterItem(1L, "Not done"));
+        currlist.add(new FilterItem(2L, "Done"));
+        return currlist;
     }
 
 }

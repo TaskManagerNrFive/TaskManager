@@ -1,5 +1,7 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import lv.javaguru.java2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,17 @@ public class DeleteTeamUserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/deleteTeamUser") //, method = {RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
 
         ModelAndView mvcModel;
         try {

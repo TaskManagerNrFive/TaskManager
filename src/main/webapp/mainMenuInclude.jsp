@@ -16,6 +16,7 @@
     mainMenuItems.add(new MainMenuItem(2, "Task types", "/java2/taskTypes"));
     mainMenuItems.add(new MainMenuItem(3, "Teams", "/java2/teams"));
     mainMenuItems.add(new MainMenuItem(4, "Tasks", "/java2/tasks"));
+    mainMenuItems.add(new MainMenuItem(5, "My tasks", "/java2/userTasks?filterMode=2"));
 %>
 <br>
 <div class="row">

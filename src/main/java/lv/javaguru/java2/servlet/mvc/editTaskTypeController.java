@@ -2,6 +2,8 @@ package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskTypeDAO;
 import lv.javaguru.java2.domain.TaskType;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -24,8 +26,17 @@ public class editTaskTypeController {
     @Qualifier("ORM_TaskTypeDAO")
     private TaskTypeDAO taskTypeDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/editTaskType", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         List<Object> list = new ArrayList<>();
         try {

@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.*;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.Team;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -39,11 +40,17 @@ public class TasksController {
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/tasks") // , method = {RequestMethod.GET})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
 
-        User sessionUser = (User) req.getSession().getAttribute("User");
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
 
         ModelAndView mvcModel;
 
@@ -149,6 +156,9 @@ public class TasksController {
                 String.valueOf(filterState.getStatus())));
         list.add(new Cookie("filterTitle" + sessionUser.getUserId(),
                 filterState.getTitle()));
+        for (Cookie cookie: list) {
+            cookie.setMaxAge(60 * 60 * 24 * 365);
+        }
         return list;
     }
 
@@ -156,7 +166,7 @@ public class TasksController {
         List<List<FilterItem>> filterLists = new ArrayList();
         filterLists.add(formUserFilterList(users));
         filterLists.add(formTeamFilterList(teams));
-        filterLists.add(formStatusFilterList());
+        filterLists.add(AllTasksFilterState.formStatusFilterList());
         return filterLists;
     }
 
@@ -177,14 +187,6 @@ public class TasksController {
         }
         currlist.sort(Comparator.comparing(f -> f.getName()));
         currlist.add(0, new FilterItem(0L, "--- all ---"));
-        return currlist;
-    }
-
-    public List<FilterItem> formStatusFilterList() {
-        List<FilterItem> currlist = new ArrayList();
-        currlist.add(new FilterItem(0L, "--- all ---"));
-        currlist.add(new FilterItem(1L, "Not done"));
-        currlist.add(new FilterItem(2L, "Done"));
         return currlist;
     }
 

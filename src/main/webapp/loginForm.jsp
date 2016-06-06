@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" type="text" name="password" value="" class="form-control">
+        <input id="password" type="password" name="password" value="" class="form-control">
     </div>
     <input type="submit" value="Log In" class="btn btn-default"><br>
     <br>

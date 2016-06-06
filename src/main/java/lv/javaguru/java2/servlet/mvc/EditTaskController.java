@@ -6,6 +6,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.TaskType;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -38,9 +39,18 @@ public class EditTaskController {
     @Qualifier("JDBC_UserDAO")
     private UserDAO userDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
 //    private static Logger logger = Logger.getLogger(TaskTypesController.class.getName());
     @RequestMapping(value = "/editTask", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         List<Object> list = new ArrayList<>();
 

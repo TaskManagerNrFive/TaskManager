@@ -20,14 +20,13 @@
 <% request.setAttribute("currentMenuID", 4); %>
 <%@ include file="/Header.jsp" %>
 
-<% List<Map> dataList = (List<Map>) request.getAttribute("data");%>
-
-<%Map<String,List> dataMap = dataList.get(0);%>
-<% List<Task> tasks = (List<Task>) dataMap.get("tasks");  %>
-
-<% Map<Long,String> users = dataList.get(1);  %>
-
 <%
+    List<Map> dataList = (List<Map>) request.getAttribute("data");
+
+    Map<String,List> dataMap = dataList.get(0);
+    List<Task> tasks = (List<Task>) dataMap.get("tasks");
+    Map<Long,String> users = dataList.get(1);
+
     List<List<FilterItem>> filterLists = (List) request.getAttribute("filterLists");
     List<Cookie> newCookies = (List) request.getAttribute("newCookies");
     AllTasksFilterState filterState = (AllTasksFilterState) request.getAttribute("filterState");
@@ -163,7 +162,7 @@
                 <td><%= tt.getDueDateFormated()  %></td>
                 <td><%= tt.getTaskType()  %></td>
                 <td>
-                    <a href="/java2/userTasks?userId=<%= tt.getUserId()  %>">
+                    <a href="/java2/userTasks?filterMode=1&filterUserId=<%= tt.getUserId()  %>&filterStatus=1&filterTitle=">
                         <%= users.get(tt.getUserId())  %>
                     </a>
                 </td>

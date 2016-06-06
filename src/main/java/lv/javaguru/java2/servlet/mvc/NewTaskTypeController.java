@@ -1,5 +1,8 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +18,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NewTaskTypeController {
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/newTaskType", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         return new ModelAndView("/newTaskTypeForm", "data", null);
     }
 

@@ -1,6 +1,8 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.TaskDAO;
+import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -21,8 +23,17 @@ public class DestroyTaskController {
     @Qualifier("JDBC_TaskDAO")
     private TaskDAO taskDAO;
 
+    @Autowired
+    AccountManager accountManager;
+
     @RequestMapping(value = "/destroyTask", method = {RequestMethod.GET})
     public ModelAndView processRequest(HttpServletRequest req) {
+
+        User sessionUser = accountManager.getUserFromSession(req.getSession());
+        if (sessionUser == null) {
+            return new ModelAndView("/redirect", "data", "");
+        }
+
         ModelAndView mvcModel;
         try {
             int taskId = Integer.parseInt(req.getParameter("taskId"));
