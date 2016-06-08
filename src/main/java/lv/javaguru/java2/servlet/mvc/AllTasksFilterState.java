@@ -68,11 +68,16 @@ public class AllTasksFilterState {
     }
 
     public String getValueFromList(long id, List<FilterItem> list) {
-        return list.stream()
-                .filter(item -> item.getId() == id)
-                .collect(Collectors.toList())
-                .get(0)
-                .getName();
+        String str;
+        List<FilterItem> flist = list.stream().filter(item -> item.getId() == id)
+                                 .collect(Collectors.toList());
+        if (!flist.isEmpty()) {
+            str = flist.get(0).getName();
+        }
+        else {
+            str = "NOT FOUND!";
+        }
+        return str;
     }
 
     public static List<FilterItem> formStatusFilterList() {

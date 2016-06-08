@@ -29,7 +29,7 @@ public class newTeamFormController {
             return new ModelAndView("/redirect", "data", "");
         }
 
-        return new ModelAndView("/newTeamRegistration", "data", null);
+        return new ModelAndView("/newTeamRegistration", "mode", "1");
     }
 
 }

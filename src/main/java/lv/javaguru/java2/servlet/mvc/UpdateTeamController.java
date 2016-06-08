@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.TeamDAO;
 import lv.javaguru.java2.domain.Team;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.AccountManager;
+import lv.javaguru.java2.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -22,9 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UpdateTeamController {
 
+    /*
     @Autowired
     @Qualifier("ORM_TeamDAO")
     private TeamDAO teamDAO;
+    */
+
+    @Autowired
+    private TeamService teamService;
 
     @Autowired
     AccountManager accountManager;
@@ -32,7 +38,6 @@ public class UpdateTeamController {
     @RequestMapping(value = "/updateTeam", method = {RequestMethod.POST})
     @Transactional
     public ModelAndView processRequest(HttpServletRequest req) {
-        /* need to check form params here too */
 
         User sessionUser = accountManager.getUserFromSession(req.getSession());
         if (sessionUser == null) {
@@ -44,15 +49,21 @@ public class UpdateTeamController {
             long teamId = Long.parseLong(req.getParameter("teamId"));
             String newName = req.getParameter("name");
             String newDescription = req.getParameter("description");
-            Team team = teamDAO.getById(teamId);
+            Team team = new Team();
+            team.setTeamID(teamId);
             team.setName(newName);
             team.setDescription(newDescription);
-            teamDAO.update(team);
+            teamService.update(team);
             mvcModel = new ModelAndView("/helloWorld", "data", "Record updated!");
+        }
+        catch (IllegalArgumentException e) {
+            mvcModel = new ModelAndView("/editTeamForm", "errorMessage", e.getMessage());
+            mvcModel.addObject("mode", "2");
         }
         catch (Exception e) {
             mvcModel = new ModelAndView("/helloWorld", "data", "Error!");
         }
         return mvcModel;
     }
+
 }

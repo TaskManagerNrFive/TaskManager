@@ -16,7 +16,21 @@
 <%@ include file="/Header.jsp" %>
 
 <%
-Team team = (Team) request.getAttribute("data");
+    String errorMsg = (String) request.getAttribute("errorMessage");
+    String mode = (String) request.getAttribute("mode");
+    long teamId;
+    String newName = "", newDesc = "";
+    if (mode.equals("2")) {
+        teamId  = Long.parseLong(request.getParameter("teamId"));
+        newName = request.getParameter("name");
+        newDesc = request.getParameter("description");
+    }
+    else {
+        Team team = (Team) request.getAttribute("data");
+        teamId  = team.getTeamID();
+        newName = team.getName();
+        newDesc = team.getDescription();
+    }
 %>
 
 <div class="row">
@@ -24,15 +38,19 @@ Team team = (Team) request.getAttribute("data");
     <div class="col-md-5">
         <h3>Edit team</h3>
         <br>
+        <% if (errorMsg != null) { %>
+            <h5 class="alert alert-danger"><%= errorMsg %> </h5>
+            <br>
+        <% } %>
         <form name="updateTeam" method="POST" action="updateTeam">
-            <input type="hidden" name="teamId" value="<%= team.getTeamID() %>">
+            <input type="hidden" name="teamId" value="<%= teamId %>">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" required value="<%=team.getName()%>" class="form-control">
+                <input type="text" name="name" value="<%= newName %>" class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" name="description" value="<%=team.getDescription()%>" class="form-control">
+                <input type="text" name="description" value="<%= newDesc %>" class="form-control">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>

@@ -13,6 +13,8 @@ public interface TeamDAO {
 
     Team getById(Long id) throws DBException;
 
+    Team getByName(String name, Long excludedId) throws DBException;
+
     void delete(Long id) throws DBException;
 
     void update(Team team) throws DBException;

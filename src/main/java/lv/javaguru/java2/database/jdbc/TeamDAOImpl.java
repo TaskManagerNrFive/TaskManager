@@ -76,6 +76,11 @@ public class TeamDAOImpl extends DAOImpl implements TeamDAO {
     }
 
     @Override
+    public Team getByName(String name, Long excludedId) throws DBException {
+        throw new DBException("Error!");
+    }
+
+    @Override
     public List<Team> getAll() throws DBException {
         List<Team> teams = new ArrayList<Team>();
         Connection connection = null;

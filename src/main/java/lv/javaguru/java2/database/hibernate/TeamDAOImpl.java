@@ -4,8 +4,8 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TeamDAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.domain.Team;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +37,17 @@ public class TeamDAOImpl implements TeamDAO {
     public Team getById(Long id) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return (Team) session.get(Team.class, id);
+    }
+
+    @Override
+    public Team getByName(String name, Long excludedId) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Team.class);
+        criteria.add(Restrictions.eq("name", name));
+        if (excludedId != 0) {
+            criteria.add(Restrictions.ne("teamID", excludedId));
+        }
+        return (Team) criteria. uniqueResult();
     }
 
     @Override

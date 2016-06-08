@@ -1,8 +1,5 @@
 package lv.javaguru.java2.config;
 
-/**
- * Created by Vladislav on 3/17/2015.
- */
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

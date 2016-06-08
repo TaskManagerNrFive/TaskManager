@@ -1,8 +1,5 @@
 package lv.javaguru.java2.config;
 
-/**
- * Created by Vladislav on 3/17/2015.
- */
 import lv.javaguru.java2.servlet.mvc.SpringAppConfig;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

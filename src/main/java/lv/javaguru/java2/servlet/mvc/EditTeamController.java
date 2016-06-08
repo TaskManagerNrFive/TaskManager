@@ -38,7 +38,11 @@ public class EditTeamController {
         try {
             long teamId = Long.parseLong(req.getParameter("teamId"));
             Team team = teamDAO.getById(teamId);
+            if (team == null) {
+                throw new Exception();
+            }
             mvcModel = new ModelAndView("/editTeamForm", "data", team);
+            mvcModel.addObject("mode", "1");
         }
         catch (Exception e) {
             mvcModel = new ModelAndView("/helloWorld", "data", "Error!");
