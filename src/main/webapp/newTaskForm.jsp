@@ -57,7 +57,7 @@
                 <label for="responsibleId">Responsible</label>
                 <select id="responsibleId" name="responsibleId" class="form-control">
                     <% for(User uu:allResponsibles ) { %>
-                        <option value="<%= uu.getUserId()  %>"><%= uu.getFullName() %></option>
+                        <option value="<%= uu.getUserId() %>"><%= uu.getFullName() %></option>
                     <% } %>
                 </select>
             </div>

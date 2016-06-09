@@ -24,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`users` (
 DROP TABLE IF EXISTS `Java2_test`.`tasks` ;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`tasks` (
-  `TaskID` INT(11) NOT NULL AUTO_INCREMENT,
+  `TaskID` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `DueDate` DATE,
   `DoneDate` DATE,
   `Title` VARCHAR(255),
   `Description` TEXT,
-  `UserId` INT(11),
-  `ResponsibleId` INT(11),
+  `UserId` BIGINT(11),
+  `ResponsibleId` BIGINT(11),
   `TaskType` CHAR(32),
   PRIMARY KEY (`TaskID`)
 );
@@ -50,17 +50,17 @@ CREATE TABLE IF NOT EXISTS `Java2_test`.`task_types` (
   `TaskTypeID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(32) NOT NULL,
   `Description` TEXT,
-  `UserId` INT(11),
+  `UserId` BIGINT(11),
   PRIMARY KEY (`TaskTypeID`)
 );
 
 DROP TABLE IF EXISTS `Java2_test`.`task_comments`;
 
 CREATE TABLE IF NOT EXISTS `Java2_test`.`task_comments` (
-  `CommentID` INT(11) NOT NULL AUTO_INCREMENT,
+  `CommentID` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `Text` TEXT,
   `CreateTimeStamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `TaskID` INT(11) NOT NULL,
+  `TaskID` BIGINT(11) NOT NULL,
   `UserID` BIGINT(11) NOT NULL,
   PRIMARY KEY (`CommentID`)
 );

@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Column(name="UserID", columnDefinition = "int")
+    @Column(name="UserID") // , columnDefinition = "int")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private long userId;
 
     @Column(name = "FirstName")
     private String firstName;
@@ -17,7 +17,7 @@ public class User {
     private String lastName;
 
     @Column(name = "TeamID")
-    private Long teamId;
+    private long teamId;
 
     @Column(name = "Login")
     private String login;
@@ -28,11 +28,11 @@ public class User {
     @Column(name = "Email")
     private String email;
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -52,11 +52,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getTeamId() {
+    public long getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(Long teamId) {
+    public void setTeamId(long teamId) {
         this.teamId = teamId;
     }
 

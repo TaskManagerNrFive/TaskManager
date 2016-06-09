@@ -55,7 +55,7 @@ public class EditTaskController {
         List<Object> list = new ArrayList<>();
 
         try {
-            int taskId = Integer.parseInt(req.getParameter("taskId"));
+            long taskId = Long.parseLong(req.getParameter("taskId"));
             Task task = null;
 
 //            logger.info(req.getParameter("taskId"));

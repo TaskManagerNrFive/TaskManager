@@ -102,7 +102,7 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
                     connection.prepareStatement("insert into task_types values (default, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, taskType.getName());
             preparedStatement.setString(2, taskType.getDescription());
-            preparedStatement.setInt(3, taskType.getUserId());
+            preparedStatement.setLong(3, taskType.getUserId());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -144,13 +144,13 @@ public class TaskTypeDAOImpl extends DAOImpl implements TaskTypeDAO {
     }
 
     @Override
-    public List<TaskType> getAllTaskTypeByUserId(int userId) throws DBException {
+    public List<TaskType> getAllTaskTypeByUserId(long userId) throws DBException {
         List<TaskType> taskTypes =  new ArrayList<TaskType>();
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from task_types where UserId = ?");
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setLong(1, userId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

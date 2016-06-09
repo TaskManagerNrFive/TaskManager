@@ -53,7 +53,7 @@ public class ShowTaskController {
         ModelAndView mvcModel;
         List<Object> list = new ArrayList<>();
         try {
-            int taskId = Integer.parseInt(req.getParameter("taskId"));
+            long taskId = Long.parseLong(req.getParameter("taskId"));
             Task task = null;
 
             task = taskDAO.getById(taskId);

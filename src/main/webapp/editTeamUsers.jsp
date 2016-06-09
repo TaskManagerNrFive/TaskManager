@@ -41,7 +41,7 @@
                     </td>
                     <td>
                         <a
-                          href="/java2/deleteTeamUser?teamId=<%= team.getTeamID()%>&userId=<%= user.getUserId()%>">
+                          href="/java2/deleteTeamUser?teamId=<%= team.getTeamID()%>&userId=<%= user.getUserId() %>">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -57,7 +57,7 @@
                     <% for (User user : allUsers ) {
                         if (teamUsers.contains(user)) continue;
                     %>
-                        <option value="<%= user.getUserId()  %>"><%= user.getFullName() %></option>
+                        <option value="<%= user.getUserId() %>"><%= user.getFullName() %></option>
                     <% } %>
                 </select>
             </div>

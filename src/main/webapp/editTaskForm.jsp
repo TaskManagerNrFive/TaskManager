@@ -65,10 +65,10 @@
                 <label for="responsibleId">Responsible</label>
                 <select id="responsibleId" name="responsibleId" class="form-control">
                     <% for(User uu:allResponsibles ) { %>
-                        <% if(uu.getUserId() == task.getUserId()) { %>
-                            <option value="<%= uu.getUserId()  %>" selected="selected"><%= uu.getFullName() %></option>
+                        <% if(uu.getUserId() == task.getresponsibleId() ) { %>
+                            <option value="<%= uu.getUserId() %>" selected="selected"><%= uu.getFullName() %></option>
                         <% } else { %>
-                            <option value="<%= uu.getUserId()  %>"><%= uu.getFullName() %></option>
+                            <option value="<%= uu.getUserId() %>"><%= uu.getFullName() %></option>
                         <% } %>
                     <% } %>
                 </select>

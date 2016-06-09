@@ -31,7 +31,7 @@ public class TaskCommentDAOImpl implements TaskCommentDAO {
     }
 
     @Override
-    public List<TaskComment> getByTaskID(int taskID) throws DBException {
+    public List<TaskComment> getByTaskID(long taskID) throws DBException {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(TaskComment.class)
                 .add(Restrictions.eq("taskID", taskID))

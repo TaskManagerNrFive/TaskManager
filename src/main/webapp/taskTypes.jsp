@@ -29,7 +29,7 @@
             <% for(TaskType tt:taskTypes ) { %>
                 <tr>
                     <td>
-                        <a href="/java2/showTaskType?taskTypeId=<%= tt.getTaskTypeID()  %>">
+                        <a href="/java2/showTaskType?taskTypeId=<%= tt.getTaskTypeID() %>">
                             <%= tt.getName()  %>
                         </a>
                     </td>

@@ -14,7 +14,7 @@ public class TaskComment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CommentID", nullable = false)
-    private int commentID;
+    private long commentID;
 
     @Column(name = "Text", columnDefinition = "TEXT")
     private String text;
@@ -23,16 +23,16 @@ public class TaskComment {
     private Date createTimeStamp;
 
     @Column(name = "TaskID", nullable = false)
-    private int taskID;
+    private long taskID;
 
     @Column(name = "UserID", nullable = false)
     private long userID;
 
-    public int getCommentID() {
+    public long getCommentID() {
         return commentID;
     }
 
-    public void setCommentID(int commentID) {
+    public void setCommentID(long commentID) {
         this.commentID = commentID;
     }
 
@@ -52,11 +52,11 @@ public class TaskComment {
         this.createTimeStamp = createTimeStamp;
     }
 
-    public int getTaskID() {
+    public long getTaskID() {
         return taskID;
     }
 
-    public void setTaskID(int taskID) {
+    public void setTaskID(long taskID) {
         this.taskID = taskID;
     }
 

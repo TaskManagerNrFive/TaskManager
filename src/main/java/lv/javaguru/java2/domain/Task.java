@@ -17,7 +17,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "TaskID", nullable = false)
-    private int taskId;
+    private long taskId;
 
     @Column(name = "Title")
     private String title;
@@ -26,10 +26,10 @@ public class Task {
     private String description;
 
     @Column(name = "UserId")
-    private int userId;
+    private long userId;
 
     @Column(name = "ResponsibleId")
-    private int responsibleId;
+    private long responsibleId;
 
     @Column(name = "TaskType", columnDefinition = "CHAR")
     private String taskType;
@@ -100,7 +100,7 @@ public class Task {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -108,15 +108,19 @@ public class Task {
         return responsibleId;
     }
 
-    public void setResponsibleId(int responsibleId) {
+    public void setResponsibleId(long responsibleId) {
         this.responsibleId = responsibleId;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public long getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
 

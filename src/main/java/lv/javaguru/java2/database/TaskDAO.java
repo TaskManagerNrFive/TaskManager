@@ -13,13 +13,13 @@ public interface TaskDAO {
 
     void create(Task task) throws DBException;
 
-    void delete(int id) throws DBException;
+    void delete(long id) throws DBException;
 
-    Task getById(int id) throws DBException;
+    Task getById(long id) throws DBException;
 
     List<Task> getAll() throws DBException;
 
-    List<Task> getAllTasksByUserId(int userId) throws DBException;
+    List<Task> getAllTasksByUserId(long userId) throws DBException;
 
     List<Task> getFilteredList(long userId, long teamId,
                                long status, String title) throws DBException;

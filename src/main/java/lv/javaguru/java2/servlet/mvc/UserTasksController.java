@@ -101,7 +101,7 @@ public class UserTasksController {
         AllTasksFilterState filterState = new AllTasksFilterState();
         filterState.setUserId(sessionUser.getUserId());
         filterState.setTeamId(0L);
-        filterState.setStatus(1);
+        filterState.setStatus(1L);
         filterState.setTitle("");
         return filterState;
     }

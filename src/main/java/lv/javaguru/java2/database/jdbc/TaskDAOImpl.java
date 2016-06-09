@@ -31,10 +31,10 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setString(2, task.getDescription());
             preparedStatement.setDate(3, task.getDueDate());
             preparedStatement.setDate(4, task.getDoneDate());
-            preparedStatement.setInt(5, (int) task.getresponsibleId());
+            preparedStatement.setLong(5, task.getresponsibleId());
 
             preparedStatement.setString(6, task.getTaskType());
-            preparedStatement.setInt(7, (int) task.getTaskId());
+            preparedStatement.setLong(7, task.getTaskId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskDAOImpl.update()");
@@ -64,14 +64,14 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
             preparedStatement.setString(3, task.getTitle());
             preparedStatement.setString(4, task.getDescription());
-            preparedStatement.setInt(5, (int) task.getUserId());
-            preparedStatement.setInt(6, (int) task.getresponsibleId());
+            preparedStatement.setLong(5, task.getUserId());
+            preparedStatement.setLong(6, task.getresponsibleId());
             preparedStatement.setString(7, task.getTaskType());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
-                task.setTaskId(rs.getInt(1));
+                task.setTaskId(rs.getLong(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskDAOImpl.create()");
@@ -85,13 +85,13 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
 
     @Override
-    public void delete(int id) throws DBException {
+    public void delete(long id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from tasks where TaskID = ?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskDAOImpl.delete()");
@@ -103,26 +103,26 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
     }
 
     @Override
-    public Task getById(int id) throws DBException {
+    public Task getById(long id) throws DBException {
         Connection connection = null;
 
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("select * from tasks where TaskID = ?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             Task task = null;
             if (resultSet.next()) {
                 task = new Task();
                 task.setTitle(resultSet.getString("Title"));
-                task.setTaskId(resultSet.getInt("TaskID"));
+                task.setTaskId(resultSet.getLong("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
                 task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
-                task.setUserId(resultSet.getInt("UserId"));
-                task.setResponsibleId(resultSet.getInt("ResponsibleId"));            }
+                task.setUserId(resultSet.getLong("UserId"));
+                task.setResponsibleId(resultSet.getLong("ResponsibleId"));            }
             return task;
         } catch (Throwable e) {
             System.out.println("Exception while execute TaskDAOImpl.getById()");
@@ -145,13 +145,13 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             while (resultSet.next()) {
                 Task task = new Task();
                 task.setTitle(resultSet.getString("Title"));
-                task.setTaskId(resultSet.getInt("TaskID"));
+                task.setTaskId(resultSet.getLong("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
                 task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
-                task.setUserId(resultSet.getInt("UserId"));
-                task.setResponsibleId(resultSet.getInt("ResponsibleId"));
+                task.setUserId(resultSet.getLong("UserId"));
+                task.setResponsibleId(resultSet.getLong("ResponsibleId"));
                 tasks.add(task);
             }
         } catch (Throwable e) {
@@ -165,25 +165,25 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
     }
 
     @Override
-    public List<Task> getAllTasksByUserId(int userId) throws DBException {
+    public List<Task> getAllTasksByUserId(long userId) throws DBException {
         List<Task> tasks =  new ArrayList<Task>();
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from tasks where UserId = ?");
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setLong(1, userId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Task task = new Task();
                 task.setTitle(resultSet.getString("Title"));
-                task.setTaskId(resultSet.getInt("TaskID"));
+                task.setTaskId(resultSet.getLong("TaskID"));
                 task.setTaskType(resultSet.getString("TaskType"));
                 task.setDescription(resultSet.getString("Description"));
                 task.setDueDate(resultSet.getDate("DueDate"));
                 task.setDoneDate(resultSet.getDate("DoneDate"));
-                task.setUserId(resultSet.getInt("UserId"));
-                task.setResponsibleId(resultSet.getInt("ResponsibleId"));
+                task.setUserId(resultSet.getLong("UserId"));
+                task.setResponsibleId(resultSet.getLong("ResponsibleId"));
                 tasks.add(task);
             }
         } catch (Throwable e) {

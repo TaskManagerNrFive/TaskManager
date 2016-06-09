@@ -60,7 +60,7 @@ public class TaskTypeDAOImpl implements TaskTypeDAO {
                 .addOrder(Order.asc("TaskTypeId")).list();
     }
 
-    public List<TaskType> getAllTaskTypeByUserId(int uderId) throws DBException {
+    public List<TaskType> getAllTaskTypeByUserId(long userId) throws DBException {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createCriteria(TaskType.class)

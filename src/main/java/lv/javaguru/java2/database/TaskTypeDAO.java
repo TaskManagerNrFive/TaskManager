@@ -22,6 +22,6 @@ public interface TaskTypeDAO {
 
     List<TaskType> getAll() throws DBException;
 
-    List<TaskType> getAllTaskTypeByUserId(int userId) throws DBException;
+    List<TaskType> getAllTaskTypeByUserId(long userId) throws DBException;
 
 }

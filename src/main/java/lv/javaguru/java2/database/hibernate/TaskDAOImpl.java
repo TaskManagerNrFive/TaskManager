@@ -3,7 +3,6 @@ package lv.javaguru.java2.database.hibernate;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.domain.TaskComment;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +11,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,39 +19,46 @@ import java.util.List;
  * Created by NightStranger on 6/5/2016.
  */
 @Component("ORM_TaskDAO")
+@Transactional
 public class TaskDAOImpl implements TaskDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void update(Task user) throws DBException {
-        throw new DBException("Error!");
+    public void update(Task task) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(task);
     }
 
     @Override
     public void create(Task task) throws DBException {
-        throw new DBException("Error!");
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(task);
     }
 
     @Override
-    public void delete(int id) throws DBException {
-        throw new DBException("Error!");
+    public void delete(long id) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        Task task = (Task) session.get(Task.class, id);
+        session.delete(task);
     }
 
     @Override
-    public Task getById(int id) throws DBException {
-        throw new DBException("Error!");
+    public Task getById(long id) throws DBException {
+        Session session = sessionFactory.getCurrentSession();
+        return (Task) session.get(Task.class, id);
     }
 
     @Override
     public List<Task> getAll() throws DBException {
-        throw new DBException("Error!");
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Task.class).list();
     }
 
     @Override
-    public List<Task> getAllTasksByUserId(int userId) throws DBException {
-        throw new DBException("Error!");
+    public List<Task> getAllTasksByUserId(long userId) throws DBException {
+        return getFilteredList(userId, 0, 0, "");
     }
 
     @Override

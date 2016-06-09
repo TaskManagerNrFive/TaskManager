@@ -11,6 +11,6 @@ public interface TaskCommentDAO {
 
     void create(TaskComment taskComment) throws DBException;
 
-    List<TaskComment> getByTaskID(int taskID) throws DBException;
+    List<TaskComment> getByTaskID(long taskID) throws DBException;
 
 }

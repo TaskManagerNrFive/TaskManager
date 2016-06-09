@@ -27,7 +27,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     connection.prepareStatement("insert into users values (default, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setInt(3, 1234);
+            preparedStatement.setLong(3, 0);
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setString(6, user.getLogin());

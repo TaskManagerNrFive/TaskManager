@@ -43,7 +43,7 @@ public class EditTeamUsersController {
 
         ModelAndView mvcModel;
         try {
-            Long teamID = Long.parseLong(req.getParameter("teamId"));
+            long teamID = Long.parseLong(req.getParameter("teamId"));
             Team team = teamDAO.getById(teamID);
             List<User> teamUsers = userDAO.getByTeamId(team.getTeamID());
             List<User> allUsers = userDAO.getAll();

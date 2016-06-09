@@ -23,9 +23,9 @@ public class TaskType {
 
 //    @ManyToOne
     @Column(name = "UserId")
-    protected int userId;
+    protected long userId;
 
-    public long getTaskTypeID() {
+    public int getTaskTypeID() {
         return TaskTypeId;
     }
 
@@ -41,9 +41,9 @@ public class TaskType {
         this.name = name;
     }
 
-    public void setUserId(int userId) { this.userId = userId; }
+    public void setUserId(long userId) { this.userId = userId; }
 
-    public int getUserId() { return userId; }
+    public long getUserId() { return userId; }
 
     public String getDescription() {
         return description;

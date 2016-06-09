@@ -91,7 +91,7 @@
             <label class="control-label col-md-2" for="filterTitle">Title:</label>
             <div class="col-md-4">
                 <input type="text" id = "filterTitle" name="filterTitle"
-                       value="<%= filterState.getTitle()%>" class="form-control">
+                       value="<%= filterState.getTitle() %>" class="form-control">
             </div>
         </div>
         <div class="form-group">
